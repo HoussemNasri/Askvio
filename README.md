@@ -1,2 +1,2 @@
 # Askvio
-Askvio is forum platform that allows users to earn money for their contributions to the community
+Askvio is a next-generation open source forum platform that allows users to earn money for their contributions to the community. It is designed to provide an enhanced user experience and monetize online forums through a rewards program, which we call the Askvio Rewards System (ARS). The current version of Askvio is powered by our own proprietary technology stack and utilizes state-of-the-art web technologies such as MongoDB, Node.js, AngularJS and others.
