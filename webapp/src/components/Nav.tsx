@@ -13,7 +13,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 
-const navItems = ['LogIn', 'SignUp'];
+const navItems = ['LogIn', 'Sign Up'];
 
 export default function Nav() {
     return (<Box sx={{ display: 'flex' }}>
@@ -24,7 +24,7 @@ export default function Nav() {
                         Askvio™
                     </Button>
                 </Box>
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                <Box>
                     {navItems.map((item) => (
                         <Button key={item} sx={{ color: '#fff'}}>
                             {item}
