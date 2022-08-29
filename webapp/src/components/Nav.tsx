@@ -20,12 +20,9 @@ export default function Nav() {
         <AppBar component="nav" position="sticky">
             <Toolbar>
                 <Box sx={{display: 'flex', flexGrow: 1}}>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        align={"left"}>
+                    <Button sx={{color : '#fff'}}>
                         Askvio™
-                    </Typography>
+                    </Button>
                 </Box>
                 <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                     {navItems.map((item) => (
