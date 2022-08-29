@@ -7,21 +7,25 @@ import Nav from "./components/Nav";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
+import CssBaseline from "@mui/material/CssBaseline";
 
 const theme = createTheme()
 
 function App() {
     return (
         <div className="App">
-            <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                <Router>
-                    <Nav/>
-                    <Routes>
-                        <Route path='/' element={<Home/>}/>
-                        <Route path='/login' element={<Login/>}/>
-                    </Routes>
-                </Router>
-            </Box>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                    <Router>
+                        <Nav/>
+                        <Routes>
+                            <Route path='/' element={<Home/>}/>
+                            <Route path='/login' element={<Login/>}/>
+                        </Routes>
+                    </Router>
+                </Box>
+            </ThemeProvider>
         </div>
     );
 }
