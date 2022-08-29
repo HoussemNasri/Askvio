@@ -12,6 +12,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import * as yup from 'yup';
+import {string} from "yup";
+import {useFormik} from 'formik';
 
 function Copyright(props: any) {
     return (
@@ -38,6 +41,22 @@ export default function Login() {
         });
     };
 
+    const validationSchema = yup.object({
+        email: string().email('Enter a valid email').required('Email is required'),
+        password: string().min(8, 'Password should be of minimum 8 characters length').required('Password is required'),
+    });
+
+    const formik = useFormik({
+        initialValues: {
+            email: 'foobar@example.com',
+            password: 'foobar',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
+    });
+
     return (
             <Container maxWidth="sm" sx={{mt: 3}}>
                 <CssBaseline />
@@ -54,7 +73,7 @@ export default function Login() {
                     <Typography component="h1" variant="h5">
                         Sign in
                     </Typography>
-                    <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1, display: 'flex', flexDirection: 'column',  alignItems: 'flex-start' }}>
+                    <Box component="form" noValidate onSubmit={formik.handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column',  alignItems: 'flex-start' }}>
                         <TextField
                             margin="normal"
                             required
@@ -64,6 +83,10 @@ export default function Login() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            value = {formik.values.email}
+                            onChange = {formik.handleChange}
+                            error = {formik.touched.email && Boolean(formik.errors.email)}
+                            helperText={formik.touched.email && formik.errors.email}
                         />
                         <TextField
                             margin="normal"
@@ -74,6 +97,10 @@ export default function Login() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            value = {formik.values.password}
+                            onChange = {formik.handleChange}
+                            error = {formik.touched.password && Boolean(formik.errors.password)}
+                            helperText={formik.touched.password && formik.errors.password}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -84,8 +111,7 @@ export default function Login() {
                             type="submit"
                             fullWidth
                             variant="contained"
-                            sx={{ mt: 2, mb: 2, height: 44 }}
-                        disableElevation>
+                            sx={{ mt: 2, mb: 2, height: 44 }} disableElevation>
                             Sign In
                         </Button>
                         <Grid sx={{gap: 10}} container>
