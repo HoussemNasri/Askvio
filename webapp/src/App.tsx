@@ -5,20 +5,23 @@ import {Box, Button, Container} from "@mui/material";
 import Login from "./pages/Login";
 import Nav from "./components/Nav";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
+import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
+import Home from "./pages/Home";
 
 const theme = createTheme()
 
 function App() {
     return (
         <div className="App">
-            <ThemeProvider theme={theme}>
-                <Box sx={{display: 'flex', flexDirection: 'column'}}>
+            <Box sx={{display: 'flex', flexDirection: 'column'}}>
+                <Router>
                     <Nav/>
-                    <main>
-                        <Login/>
-                    </main>
-                </Box>
-            </ThemeProvider>
+                    <Routes>
+                        <Route path='/' element={<Home/>}/>
+                        <Route path='/login' element={<Login/>}/>
+                    </Routes>
+                </Router>
+            </Box>
         </div>
     );
 }
