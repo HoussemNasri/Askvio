@@ -16,7 +16,7 @@
 ## Considered Options
 
 * ReactJS
-* ReactJS + Typescript
+* React + Typescript
 * VueJS
 * Angular
 
@@ -46,6 +46,18 @@ Chosen option: "ReactJS + Typescript", because
 ## Pros and Cons of the Options
 
 ### ReactJS
+
+<!-- This is an optional element. Feel free to remove. -->
+{example | description | pointer to more information | …}
+
+* Good, because it is the most popular according to [Stackoverflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies).
+* Good, because {argument b}
+<!-- use "neutral" if the given argument weights neither for good nor bad -->
+* Neutral, because {argument c}
+* Bad, because {argument d}
+* … <!-- numbers of pros and cons can vary -->
+
+### React + Typescript
 
 <!-- This is an optional element. Feel free to remove. -->
 {example | description | pointer to more information | …}
