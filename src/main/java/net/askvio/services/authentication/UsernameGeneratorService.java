@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class UsernameGeneratorService {
-    private final Random random;
+    private final Random random = new Random();
 
     public String generate(String firstname, String lastname) {
         Objects.requireNonNull(firstname);
