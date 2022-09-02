@@ -15,6 +15,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as yup from 'yup';
 import {string} from "yup";
 import {useFormik} from 'formik';
+import {AuthService} from '../services/AuthService'
 
 function Copyright(props: any) {
     return (
@@ -32,13 +33,15 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function Login() {
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        const data = new FormData(event.currentTarget);
+    const handleSubmit = (email: string, password: string) => {
+        const auth = new AuthService();
+        auth.login(email, password);
+
         console.log({
-            email: data.get('email'),
-            password: data.get('password'),
+            email: email,
+            password: password,
         });
+        // TODO: Change Router to the home page
     };
 
     const validationSchema = yup.object({
@@ -53,7 +56,7 @@ export default function Login() {
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            alert(JSON.stringify(values, null, 2));
+            handleSubmit(values.email, values.password)
         },
     });
 
