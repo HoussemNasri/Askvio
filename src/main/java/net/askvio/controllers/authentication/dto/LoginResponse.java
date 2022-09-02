@@ -1,4 +1,6 @@
 package net.askvio.controllers.authentication.dto;
 
-public class LoginResponse {
+public record LoginResponse(
+        String jwt
+) {
 }

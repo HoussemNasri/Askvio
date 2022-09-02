@@ -1,4 +1,6 @@
 package net.askvio.controllers.authentication.dto;
 
-public class LoginRequest {
+public record LoginRequest(
+        String email,
+        String password) {
 }
