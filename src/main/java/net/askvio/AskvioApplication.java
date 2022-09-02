@@ -1,19 +1,59 @@
 package net.askvio;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceTransactionManagerAutoConfiguration;
-import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
+import java.time.Instant;
 
-@SpringBootApplication(exclude = {
-        DataSourceAutoConfiguration.class,
-        DataSourceTransactionManagerAutoConfiguration.class,
-        HibernateJpaAutoConfiguration.class})
-public class AskvioApplication {
+import lombok.AllArgsConstructor;
+import net.askvio.database.UserAccountRepository;
+import net.askvio.model.UserAccount;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+@AllArgsConstructor
+public class AskvioApplication implements CommandLineRunner {
+
+    private final UserAccountRepository userAccountRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(AskvioApplication.class, args);
+    }
+
+    @Override
+    public void run(String... args) throws Exception {
+        loadTestUserAccounts();
+    }
+
+    private void loadTestUserAccounts() {
+        userAccountRepository.save(new UserAccount(
+                null,
+                "Houssem",
+                "Nasri",
+                "houssem.nasri.15",
+                "housi.housi2015@gmail.com",
+                "123",
+                Instant.parse("2018-06-01T18:35:24.00Z"),
+                true
+        ));
+        userAccountRepository.save(new UserAccount(
+                null,
+                "Sammie",
+                "Greene",
+                "Moused69",
+                "SammieGGreene@teleworm.us",
+                "Am0neeth1",
+                Instant.parse("2020-07-19T18:35:24.00Z"),
+                true
+        ));
+        userAccountRepository.save(new UserAccount(
+                null,
+                "John",
+                "Ramirez",
+                "Thavie",
+                "JohnKRamirez@dayrep.com",
+                "Engeroof0",
+                Instant.parse("2021-01-02T18:35:24.00Z"),
+                true
+        ));
     }
 }
