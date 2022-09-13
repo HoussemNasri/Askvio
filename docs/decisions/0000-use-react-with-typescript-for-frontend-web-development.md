@@ -15,14 +15,14 @@
 
 ## Considered Options
 
-* {title of option 1}
-* {title of option 2}
-* {title of option 3}
-* … <!-- numbers of options can vary -->
+* ReactJS
+* React + Typescript
+* VueJS
+* Angular
 
 ## Decision Outcome
 
-Chosen option: "{title of option 1}", because
+Chosen option: "ReactJS + Typescript", because
 {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
 
 <!-- This is an optional element. Feel free to remove. -->
@@ -45,19 +45,31 @@ Chosen option: "{title of option 1}", because
 <!-- This is an optional element. Feel free to remove. -->
 ## Pros and Cons of the Options
 
-### {title of option 1}
+### ReactJS
 
 <!-- This is an optional element. Feel free to remove. -->
 {example | description | pointer to more information | …}
 
-* Good, because {argument a}
+* Good, because it is the most popular according to [Stackoverflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies).
 * Good, because {argument b}
 <!-- use "neutral" if the given argument weights neither for good nor bad -->
 * Neutral, because {argument c}
 * Bad, because {argument d}
 * … <!-- numbers of pros and cons can vary -->
 
-### {title of other option}
+### React + Typescript
+
+<!-- This is an optional element. Feel free to remove. -->
+{example | description | pointer to more information | …}
+
+* Good, because it is the most popular according to [Stackoverflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies).
+* Good, because {argument b}
+<!-- use "neutral" if the given argument weights neither for good nor bad -->
+* Neutral, because {argument c}
+* Bad, because {argument d}
+* … <!-- numbers of pros and cons can vary -->
+
+### VueJS
 
 {example | description | pointer to more information | …}
 
@@ -67,7 +79,16 @@ Chosen option: "{title of option 1}", because
 * Bad, because {argument d}
 * …
 
+### Angular
+
+{example | description | pointer to more information | …}
+
+* Good, because it uses Typescript by default instead of Javascript
+* Bad, because it has a steeper learning curve compared to the other options
+
 <!-- This is an optional element. Feel free to remove. -->
+## Links
+- [Mi Classrooms ADR-0002](https://github.com/mi-classroom/mi-web-technologien-beiboot-ss2022-Moosgloeckchen/blob/be96353229bb0514241963bb8b1d32fe4bd153f8/docs/decisions/0002-react-frontend.md)
 ## More Information
 
 {You might want to provide additional evidence/confidence for the decision outcome here and/or
