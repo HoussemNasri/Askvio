@@ -15,7 +15,8 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import * as yup from 'yup';
 import {string} from "yup";
 import {useFormik} from 'formik';
-import {AuthService} from '../services/AuthService'
+import {login, getCurrentAccessToken} from '../services/AuthService'
+import {useNavigate} from "react-router-dom";
 
 function Copyright(props: any) {
     return (
@@ -33,9 +34,14 @@ function Copyright(props: any) {
 const theme = createTheme();
 
 export default function Login() {
+    const navigate = useNavigate()
+
     const handleSubmit = (email: string, password: string) => {
-        const auth = new AuthService();
-        auth.login(email, password);
+        login(email, password);
+        if (getCurrentAccessToken() != null) {
+            navigate("/")
+            window.location.reload()
+        }
 
         console.log({
             email: email,

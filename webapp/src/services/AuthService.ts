@@ -4,40 +4,38 @@ type LoginResponse = {
     jwt: string
 }
 
-export class AuthService {
-    private readonly ACCESS_TOKEN = "accessToken";
+const ACCESS_TOKEN = "accessToken";
 
-    private readonly API_BASE_ENDPOINT = "http://localhost:8080/api/v1"
-    private readonly API_LOGIN_ENDPOINT = this.API_BASE_ENDPOINT + "/auth/login"
+const API_BASE_ENDPOINT = "http://localhost:8080/api/v1"
+const API_LOGIN_ENDPOINT = API_BASE_ENDPOINT + "/auth/login"
 
-    login(email: String, password: String) {
-        axios.post(this.API_LOGIN_ENDPOINT, {
-            email,
-            password
-        }).then(response => {
-            if (response.status == 200) {
-                const loginResponse = response.data as LoginResponse
-                this.setAccessToken(loginResponse.jwt)
-            } else {
-                console.error("An error occurred while logging in ", response.request)
-            }
-        })
-    }
+export function login(email: String, password: String) {
+    axios.post(API_LOGIN_ENDPOINT, {
+        email,
+        password
+    }).then(response => {
+        if (response.status == 200) {
+            const loginResponse = response.data as LoginResponse
+            setAccessToken(loginResponse.jwt)
+        } else {
+            console.error("An error occurred while logging in ", response.request)
+        }
+    })
+}
 
-    logout() {
+function logout() {
 
-    }
+}
 
-    getCurrentUser() {
+function getCurrentUser() {
 
-    }
+}
 
-    private setAccessToken(token: string) {
-        localStorage.setItem(this.ACCESS_TOKEN, token)
-        console.log(`Access Token = ${token}`);
-    }
+function setAccessToken(token: string) {
+    localStorage.setItem(ACCESS_TOKEN, token)
+    console.log(`Access Token = ${token}`);
+}
 
-    getCurrentAccessToken() {
-        return localStorage.getItem(this.ACCESS_TOKEN)
-    }
+export function getCurrentAccessToken() {
+    return localStorage.getItem(ACCESS_TOKEN)
 }
