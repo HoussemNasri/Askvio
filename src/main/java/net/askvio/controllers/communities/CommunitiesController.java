@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/communities")
-public class CommunityController {
+public class CommunitiesController {
     private final CommunityService communityService;
 
     @GetMapping("/{id}")
@@ -23,12 +23,12 @@ public class CommunityController {
                                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("{id}/joinCommunity")
+    @PostMapping("{id}/join")
     public ResponseEntity<?> join(@PathVariable("id") Long communityId) {
         throw new NotImplementedException();
     }
 
-    @PostMapping("{id}/leaveCommunity")
+    @PostMapping("{id}/leave")
     public ResponseEntity<?> leave(@PathVariable("id") Long communityId) {
         throw new NotImplementedException();
     }
