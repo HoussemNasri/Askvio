@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import net.askvio.exceptions.NotImplementedException;
 import net.askvio.services.CommunityService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,8 +30,9 @@ public class CommunitiesController {
     }
 
     @PostMapping("/{id}/join")
-    public ResponseEntity<?> join(@PathVariable("id") Long communityId) {
-        throw new NotImplementedException();
+    public ResponseEntity<?> join(@PathVariable("id") Long communityId, Authentication authentication) {
+        communityService.join(communityId, authentication);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping("/{id}/leave")
