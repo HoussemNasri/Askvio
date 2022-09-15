@@ -23,7 +23,12 @@ public class CommunitiesController {
                                .orElse(ResponseEntity.notFound().build());
     }
 
-    @PostMapping("{id}/join")
+    @GetMapping("/{id}/members")
+    public ResponseEntity<?> getMembers(@PathVariable Long id) {
+        throw new NotImplementedException();
+    }
+
+    @PostMapping("/{id}/join")
     public ResponseEntity<?> join(@PathVariable("id") Long communityId) {
         throw new NotImplementedException();
     }
