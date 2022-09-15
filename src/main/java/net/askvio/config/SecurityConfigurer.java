@@ -21,7 +21,9 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
             .authorizeRequests()
-            .antMatchers("/*")
+            .antMatchers("/**/communities/{id}/join")
+            .authenticated()
+            .anyRequest()
             .permitAll();
     }
 
