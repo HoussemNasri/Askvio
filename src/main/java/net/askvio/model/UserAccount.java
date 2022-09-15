@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,6 +35,6 @@ public class UserAccount {
     private String hashedPassword;
     private Instant creationDate;
     private Boolean activated;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Community> joinedCommunities;
 }

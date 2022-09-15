@@ -12,13 +12,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "community")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -46,6 +50,9 @@ public class Community {
     private Set<Topic> subtopicSet;
 
     @ManyToMany
+    @JoinTable(name = "community_members",
+            joinColumns = { @JoinColumn(name = "community_id") },
+            inverseJoinColumns = { @JoinColumn(name = "member_id") })
     private Set<UserAccount> members;
 
 
