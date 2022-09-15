@@ -49,6 +49,6 @@ public class JwtService {
     }
 
     public String extractEmailFromJWT(String jwt) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJwt(jwt).getBody().getSubject();
+        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(jwt).getBody().getSubject();
     }
 }
