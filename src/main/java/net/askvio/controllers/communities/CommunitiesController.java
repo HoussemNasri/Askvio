@@ -28,7 +28,7 @@ public class CommunitiesController {
         throw new NotImplementedException();
     }
 
-    @PostMapping("{id}/leave")
+    @PostMapping("/{id}/leave")
     public ResponseEntity<?> leave(@PathVariable("id") Long communityId) {
         throw new NotImplementedException();
     }
