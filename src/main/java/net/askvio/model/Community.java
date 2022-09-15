@@ -1,6 +1,7 @@
 package net.askvio.model;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -58,6 +59,10 @@ public class Community {
 
     public boolean isRestricted() {
         return type == CommunityType.RESTRICTED;
+    }
+
+    public Set<String> getSubtopicsDisplayNames() {
+        return getSubtopicSet().stream().map(Topic::getDisplayName).collect(Collectors.toSet());
     }
 
 }
