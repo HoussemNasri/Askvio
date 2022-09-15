@@ -40,7 +40,8 @@ public class AskvioApplication implements CommandLineRunner {
                 "housi.housi2015@gmail.com",
                 "123",
                 Instant.parse("2018-06-01T18:35:24.00Z"),
-                true
+                true,
+                Set.of()
         ));
         userAccountRepository.save(new UserAccount(
                 null,
@@ -50,7 +51,8 @@ public class AskvioApplication implements CommandLineRunner {
                 "SammieGGreene@teleworm.us",
                 "Am0neeth1",
                 Instant.parse("2020-07-19T18:35:24.00Z"),
-                true
+                true,
+                Set.of()
         ));
         userAccountRepository.save(new UserAccount(
                 null,
@@ -60,7 +62,8 @@ public class AskvioApplication implements CommandLineRunner {
                 "JohnKRamirez@dayrep.com",
                 "Engeroof0",
                 Instant.parse("2021-01-02T18:35:24.00Z"),
-                true
+                true,
+                Set.of()
         ));
     }
 
@@ -72,7 +75,8 @@ public class AskvioApplication implements CommandLineRunner {
                 "Java",
                 "Welcome to the Houssem's Community",
                 Topic.PROGRAMMING,
-                Set.of(Topic.NEWS, Topic.TECHNOLOGY)
+                Set.of(Topic.NEWS, Topic.TECHNOLOGY),
+                Set.of()
         ));
 
         communityRepository.save(new Community(
@@ -82,7 +86,8 @@ public class AskvioApplication implements CommandLineRunner {
                 "VIP",
                 "VIP rocks all",
                 Topic.GAMING,
-                Set.of(Topic.SPORTS)
+                Set.of(Topic.SPORTS),
+                Set.of()
         ));
     }
 }

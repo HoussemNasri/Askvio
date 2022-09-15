@@ -1,11 +1,14 @@
 package net.askvio.model;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -32,4 +35,6 @@ public class UserAccount {
     private String hashedPassword;
     private Instant creationDate;
     private Boolean activated;
+    @ManyToMany
+    private Set<Community> joinedCommunities;
 }
