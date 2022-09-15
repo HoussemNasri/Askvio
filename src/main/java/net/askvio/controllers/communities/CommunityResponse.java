@@ -1,4 +1,4 @@
-package net.askvio.controllers;
+package net.askvio.controllers.communities;
 
 import java.util.Set;
 

@@ -2,7 +2,7 @@ package net.askvio.database;
 
 import java.util.Optional;
 
-import net.askvio.controllers.CommunityResponse;
+import net.askvio.controllers.communities.CommunityResponse;
 import net.askvio.model.Community;
 import org.springframework.data.jpa.repository.JpaRepository;
 

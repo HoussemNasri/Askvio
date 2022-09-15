@@ -4,7 +4,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import lombok.AllArgsConstructor;
-import net.askvio.controllers.CommunityResponse;
+import net.askvio.controllers.communities.CommunityResponse;
 import net.askvio.database.CommunityRepository;
 import org.springframework.stereotype.Service;
 
