@@ -1,7 +1,9 @@
-import {Box, Container, CssBaseline, Tab, Tabs} from "@mui/material";
+import {Box, Container, CssBaseline, Stack, Tab, Tabs} from "@mui/material";
 import Typography from "@mui/material/Typography";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import TabPanel from "../components/TabPanel";
+import {getAllCommunities, CommunityResponse} from "../services/CommunitiesService";
+import ExploreCommunitiesListItem from "../components/ExploreCommunitiesListItem";
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -12,6 +14,14 @@ interface TabPanelProps {
 
 export default function ExploreCommunities() {
     const [category, setCategory] = useState(1)
+    const [communities, setCommunities] = useState(new Array<CommunityResponse>())
+
+    useEffect(() => {
+        getAllCommunities().then(res => {
+            console.log("ok");
+            setCommunities(res as CommunityResponse[]);
+        }).catch(e => console.error(e));
+    }, [])
 
     return <Container maxWidth="lg" sx={{
         marginTop: 6,
@@ -35,7 +45,7 @@ export default function ExploreCommunities() {
             alignItems: 'flex-start',
             flexGrow: 1
         }}>
-            <Box sx={{borderBottom: 1, borderColor: 'divider', width: '100%'}}  >
+            <Box sx={{borderBottom: 1, borderColor: 'divider', width: '100%'}}>
                 <Tabs value={category} onChange={(e, newValue) => setCategory(newValue)}
                       aria-label="basic tabs example">
                     <Tab value={1} label="All Communities"/>
@@ -43,8 +53,14 @@ export default function ExploreCommunities() {
                     <Tab value={3} label="Life and Arts"/>
                 </Tabs>
             </Box>
-            <TabPanel index={1} value={category}>
-                <h3>Hello One</h3>
+            <TabPanel index={1} value={category} >
+                <Stack spacing={2} mt={5}>
+                    {
+                        communities.map(ca => {
+                            return <ExploreCommunitiesListItem communityResponse={ca}/>
+                        })
+                    }
+                </Stack>
             </TabPanel>
             <TabPanel index={2} value={category}>
                 <h3>Hello Two</h3>

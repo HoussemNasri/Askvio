@@ -1,14 +1,33 @@
+import {Box, Divider, Typography, Link, Button, Stack} from "@mui/material";
+import {CommunityResponse} from "../services/CommunitiesService";
+
 interface ExploreCommunitiesListItemProps {
-    avatarUrl: string;
-    displayName: string;
-    description: string;
-    creationDate: Date;
-    askedQuestionsCount: number;
-    answeredQuestionsCount: number;
+    communityResponse: CommunityResponse;
 }
 
-export default function ExploreCommunitiesListItem(
-    {avatarUrl, displayName, description, creationDate, askedQuestionsCount, answeredQuestionsCount}: ExploreCommunitiesListItemProps
-) {
-    return <h1>Item </h1>
+export default function ExploreCommunitiesListItem({communityResponse}: ExploreCommunitiesListItemProps) {
+    return <Box sx={{width: '100%'}}>
+        <Stack direction="row">
+            <Box sx={{
+                flexGrow: 1
+            }}>
+                <Typography variant="h4" align="left" >
+                    <Link href="#" underline={"none"}>
+                        {communityResponse.displayName}
+                    </Link>
+                </Typography>
+                <Typography variant="subtitle1" align="left">
+                    {communityResponse.about}
+                </Typography>
+            </Box>
+            <Button variant="contained">
+                Join
+            </Button>
+        </Stack>
+
+        <Divider sx={{
+            marginTop: 2,
+            width: '100%'
+        }}/>
+    </Box>
 }
