@@ -1,5 +1,6 @@
 package net.askvio.services;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -38,5 +39,9 @@ public class CommunityService {
                 communityRepository.save(community);
             });
         }, () -> log.error("Community not found"));
+    }
+
+    public List<CommunityResponse> getCommunities() {
+        return communityRepository.findCommunityResponseBy();
     }
 }

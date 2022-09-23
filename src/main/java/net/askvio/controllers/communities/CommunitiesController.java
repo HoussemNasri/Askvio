@@ -1,5 +1,7 @@
 package net.askvio.controllers.communities;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import net.askvio.exceptions.NotImplementedException;
 import net.askvio.services.CommunityService;
@@ -22,6 +24,12 @@ public class CommunitiesController {
         return communityService.getCommunity(id)
                                .map(ResponseEntity::ok)
                                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public ResponseEntity<List<CommunityResponse>> getCommunities() {
+        List<CommunityResponse> communities = communityService.getCommunities();
+            return ResponseEntity.ok(communities);
     }
 
     @GetMapping("/{id}/members")
