@@ -44,4 +44,14 @@ public class CommunityService {
     public List<CommunityResponse> getCommunities() {
         return communityRepository.findCommunityResponseBy();
     }
+
+    public boolean isCurrentUserMemberOfCommunity(Long communityId, Authentication authentication) {
+        log.info("Community Id: {}", communityId);
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Optional<UserAccount> userAccount = userAccountRepository.findByEmail(userDetails.getUsername());
+        return userAccount.map(account -> {
+                              log.info("Username: {}", account.getUsername());
+                              return communityRepository.isUserMemberOfCommunity(account, communityId);
+                          }).orElseThrow();
+    }
 }

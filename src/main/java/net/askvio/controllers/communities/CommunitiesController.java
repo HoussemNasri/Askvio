@@ -1,6 +1,7 @@
 package net.askvio.controllers.communities;
 
 import java.util.List;
+import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import net.askvio.exceptions.NotImplementedException;
@@ -29,7 +30,12 @@ public class CommunitiesController {
     @GetMapping
     public ResponseEntity<List<CommunityResponse>> getCommunities() {
         List<CommunityResponse> communities = communityService.getCommunities();
-            return ResponseEntity.ok(communities);
+        return ResponseEntity.ok(communities);
+    }
+
+    @GetMapping("/{communityId}/isMember")
+    public Map<String, Boolean> isCurrentUserMemberOfCommunity(@PathVariable Long communityId, Authentication authentication) {
+        return Map.of("isMember", communityService.isCurrentUserMemberOfCommunity(communityId, authentication));
     }
 
     @GetMapping("/{id}/members")
