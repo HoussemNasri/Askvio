@@ -1,6 +1,7 @@
 package net.askvio.model;
 
 import java.time.Instant;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -13,12 +14,13 @@ import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class UserAccount {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -37,4 +39,18 @@ public class UserAccount {
     private Boolean activated;
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Community> joinedCommunities;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof UserAccount that))
+            return false;
+        return getId().equals(that.getId()) && getFirstname().equals(that.getFirstname()) && getLastname().equals(that.getLastname()) && getUsername().equals(that.getUsername()) && getEmail().equals(that.getEmail()) && getHashedPassword().equals(that.getHashedPassword()) && Objects.equals(getCreationDate(), that.getCreationDate()) && Objects.equals(getActivated(), that.getActivated());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getFirstname(), getLastname(), getUsername(), getEmail(), getHashedPassword(), getCreationDate(), getActivated());
+    }
 }

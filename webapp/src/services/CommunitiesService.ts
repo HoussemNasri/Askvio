@@ -33,13 +33,27 @@ export function isCurrentUserMemberOfCommunity(communityId: number): Promise<boo
         return new Promise(() => false);
     }
 
-    const config = {
-        headers: {Authorization: `Bearer ${getCurrentAccessToken()}` }
-    }
-
-    return axios.get(`${API_BASE_ENDPOINT}/${communityId}/isMember`, config).then(response => (response.data as isMemberResponse).isMember)
+    return axios.get(`${API_BASE_ENDPOINT}/${communityId}/isMember`, {
+        headers: {Authorization: `Bearer ${getCurrentAccessToken()}`}
+    }).then(response => (response.data as isMemberResponse).isMember)
         .catch(e => {
             console.error("An error occurred while checking membership of current user", e)
             return false;
         })
+}
+
+export function joinCommunity(communityId: number): Promise<void> {
+    console.log("Ezzebi?")
+    if (getCurrentAccessToken() == null) {
+        return new Promise<void>(() => {
+        });
+    }
+    console.log(getCurrentAccessToken())
+    return axios.post(`${API_BASE_ENDPOINT}/${communityId}/join`,undefined, {
+        headers: {Authorization: `Bearer ${getCurrentAccessToken()}`}
+    }).then(() => {
+        console.log("Joined community successfully")
+    }).catch(e => {
+        console.error("An error occurred while checking joining a community", e)
+    })
 }

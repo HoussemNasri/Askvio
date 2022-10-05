@@ -1,5 +1,6 @@
 package net.askvio.model;
 
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -19,13 +20,14 @@ import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "community")
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
 public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -76,4 +78,17 @@ public class Community {
         return getSubtopicSet().stream().map(Topic::getDisplayName).collect(Collectors.toSet());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o)
+            return true;
+        if (!(o instanceof Community community))
+            return false;
+        return getId().equals(community.getId()) && getType() == community.getType() && getName().equals(community.getName()) && getDisplayName().equals(community.getDisplayName()) && getAbout().equals(community.getAbout()) && getPrimaryTopic() == community.getPrimaryTopic() && getSubtopicSet().equals(community.getSubtopicSet());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getType(), getName(), getDisplayName(), getAbout(), getPrimaryTopic(), getSubtopicSet());
+    }
 }

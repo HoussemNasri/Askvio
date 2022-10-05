@@ -1,6 +1,6 @@
 import {Box, Divider, Typography, Link, Button, Stack} from "@mui/material";
-import {CommunityResponse, isCurrentUserMemberOfCommunity} from "../services/CommunitiesService";
-import {useEffect, useState} from "react";
+import {CommunityResponse, isCurrentUserMemberOfCommunity, joinCommunity} from "../services/CommunitiesService";
+import {useCallback, useEffect, useState} from "react";
 
 interface ExploreCommunitiesListItemProps {
     communityResponse: CommunityResponse;
@@ -13,6 +13,15 @@ export default function ExploreCommunitiesListItem({communityResponse}: ExploreC
             console.log(`Is current user member of ${communityResponse.name}: ${r}`)
             setIsMember(r)
         })
+    }, [])
+
+    const doJoinCommunity = useCallback(() => {
+        console.log("Heyy")
+        joinCommunity(communityResponse.id).then((res) =>{
+            setIsMember(true)
+            console.log("waaa")
+        } )
+            .catch((e) => console.error("Cannot join community!"))
     }, [])
 
     return <Box sx={{width: '100%'}}>
@@ -31,12 +40,12 @@ export default function ExploreCommunitiesListItem({communityResponse}: ExploreC
             </Box>
             {
                 isMember
-                    ?  <Button variant="outlined" sx={{
+                    ? <Button variant="outlined" sx={{
                         width: '100px'
                     }}>Joined</Button>
                     : <Button variant="contained" sx={{
                         width: '100px'
-                    }}>Join</Button>
+                    }} onClick={doJoinCommunity}>Join</Button>
             }
 
         </Stack>
