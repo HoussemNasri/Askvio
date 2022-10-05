@@ -27,8 +27,8 @@ public class AskvioApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        loadTestUserAccounts();
-        loadTestCommunities();
+        /* loadTestUserAccounts();
+        loadTestCommunities();*/
     }
 
     private void loadTestUserAccounts() {
