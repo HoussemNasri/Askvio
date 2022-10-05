@@ -1,4 +1,6 @@
 import axios from 'axios'
+import {getCurrentAccessToken} from "./AuthService";
+import {bool} from "yup";
 
 export type CommunityResponse = {
     id: number;
@@ -20,4 +22,24 @@ export function getAllCommunities(): Promise<CommunityResponse[] | void> {
     }).catch(e => {
         console.error("An error occurred while fetching communities", e)
     })
+}
+
+type isMemberResponse = {
+    isMember: boolean
+}
+
+export function isCurrentUserMemberOfCommunity(communityId: number): Promise<boolean> {
+    if (getCurrentAccessToken() == null) {
+        return new Promise(() => false);
+    }
+
+    const config = {
+        headers: {Authorization: `Bearer ${getCurrentAccessToken()}` }
+    }
+
+    return axios.get(`${API_BASE_ENDPOINT}/${communityId}/isMember`, config).then(response => (response.data as isMemberResponse).isMember)
+        .catch(e => {
+            console.error("An error occurred while checking membership of current user", e)
+            return false;
+        })
 }
