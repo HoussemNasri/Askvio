@@ -28,11 +28,6 @@ export default function Login() {
 
     const handleSubmit = (email: string, password: string) => {
         dispatch(loginAsync({email, password}));
-/*        if (authState.isAuthenticated) {
-            navigate("/")
-            window.location.reload()
-        }*/
-
         console.log({
             email: email,
             password: password,

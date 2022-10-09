@@ -43,7 +43,6 @@ export function isCurrentUserMemberOfCommunity(communityId: number): Promise<boo
 }
 
 export function joinCommunity(communityId: number): Promise<void> {
-    console.log("Ezzebi?")
     if (getCurrentAccessToken() == null) {
         return new Promise<void>(() => {
         });
