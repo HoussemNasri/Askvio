@@ -10,6 +10,8 @@ import {getCurrentAccessToken} from "../services/AuthService";
 import {Container, IconButton, InputBase} from "@mui/material";
 import {AccountCircle, Explore, Notifications, Search as SearchIcon} from "@mui/icons-material";
 import {styled, alpha} from '@mui/material/styles';
+import {useAppSelector} from "../redux/app/hooks";
+import {getAuthState} from "../redux/authSlice";
 
 type NavItem = {
     displayName: string;
@@ -56,6 +58,7 @@ export default function Nav() {
         },
     }));
 
+    const isAuthenticated = useAppSelector(getAuthState).isAuthenticated
 
     return (<Box sx={{display: 'flex'}}>
         <AppBar component="nav" position="sticky">
@@ -74,7 +77,7 @@ export default function Nav() {
                         />
                     </Search>
                     {
-                        getCurrentAccessToken() && <Button component={RouterLink} to='/explore' startIcon={<Explore/>} sx={{color: '#fff'}}>
+                        isAuthenticated && <Button component={RouterLink} to='/explore' startIcon={<Explore/>} sx={{color: '#fff'}}>
                             Explore
                         </Button>
                     }
@@ -82,24 +85,24 @@ export default function Nav() {
 
                 <Box>
                     {
-                        !getCurrentAccessToken() && <Button component={RouterLink} to='/login' sx={{color: '#fff'}}>
+                        !isAuthenticated && <Button component={RouterLink} to='/login' sx={{color: '#fff'}}>
                             Log In
                         </Button>
                     }
                     {
-                        !getCurrentAccessToken() && <Button component={RouterLink} to='/signup' sx={{color: '#fff'}}>
+                        !isAuthenticated && <Button component={RouterLink} to='/signup' sx={{color: '#fff'}}>
                             Sign Up
                         </Button>
                     }
                     {
-                        getCurrentAccessToken() && <IconButton sx={{
+                        isAuthenticated && <IconButton sx={{
                             color: '#fff'
                         }}>
                             <Notifications/>
                         </IconButton>
                     }
                     {
-                        getCurrentAccessToken() && <Box sx={{display: 'inline'}}>
+                        isAuthenticated && <Box sx={{display: 'inline'}}>
                             <IconButton sx={{
                                 color: '#fff'
                             }}>
