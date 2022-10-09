@@ -15,7 +15,7 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import * as yup from 'yup';
 import {string} from "yup";
 import {useFormik} from 'formik';
-import {useNavigate} from "react-router-dom";
+import {Navigate, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../redux/app/hooks";
 import {getAuthState, loginAsync} from "../redux/authSlice";
 
@@ -28,10 +28,10 @@ export default function Login() {
 
     const handleSubmit = (email: string, password: string) => {
         dispatch(loginAsync({email, password}));
-        if (authState.isAuthenticated) {
+/*        if (authState.isAuthenticated) {
             navigate("/")
             window.location.reload()
-        }
+        }*/
 
         console.log({
             email: email,
@@ -54,6 +54,10 @@ export default function Login() {
             handleSubmit(values.email, values.password)
         },
     });
+
+    if (authState.isAuthenticated) {
+        return <Navigate to='/'/>
+    }
 
     return (
         <Container maxWidth="sm" sx={{mt: 3}}>
