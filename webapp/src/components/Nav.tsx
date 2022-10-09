@@ -6,7 +6,6 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import {Link as RouterLink, BrowserRouter as Router, NavLink} from "react-router-dom";
 import {StaticRouter} from "react-router-dom/server";
-import {getCurrentAccessToken} from "../services/AuthService";
 import {Container, IconButton, InputBase} from "@mui/material";
 import {AccountCircle, Explore, Notifications, Search as SearchIcon} from "@mui/icons-material";
 import {styled, alpha} from '@mui/material/styles';

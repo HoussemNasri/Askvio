@@ -25,6 +25,11 @@ export const loginAsync = createAsyncThunk('auth/loginAsync', async ({email, pas
     if (response.status == 200) {
         setJwt(response.data.jwt)
         setIsAuthenticated(true)
+        return {
+            currentUser: undefined,
+            isAuthenticated: true,
+            jwt: response.data.jwt
+        } as AuthState
     }
 })
 
@@ -41,7 +46,11 @@ export const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(loginAsync.fulfilled, (state, action) => {
-            state.isAuthenticated = true
+            if (action.payload) {
+                const {isAuthenticated, jwt} = action.payload
+                state.isAuthenticated = isAuthenticated;
+                state.jwt = jwt
+            }
         })
     }
 

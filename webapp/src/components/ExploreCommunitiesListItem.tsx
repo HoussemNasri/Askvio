@@ -1,6 +1,8 @@
 import {Box, Divider, Typography, Link, Button, Stack} from "@mui/material";
-import {CommunityResponse, isCurrentUserMemberOfCommunity, joinCommunity} from "../services/CommunitiesService";
 import {useCallback, useEffect, useState} from "react";
+import {CommunityResponse, join, isCurrentUserMemberOfCommunity} from '../redux/communitiesAPI'
+import {useAppSelector} from "../redux/app/hooks";
+import {getAuthState} from "../redux/authSlice";
 
 interface ExploreCommunitiesListItemProps {
     communityResponse: CommunityResponse;
@@ -8,20 +10,18 @@ interface ExploreCommunitiesListItemProps {
 
 export default function ExploreCommunitiesListItem({communityResponse}: ExploreCommunitiesListItemProps) {
     const [isMember, setIsMember] = useState(false)
+    const {jwt, isAuthenticated} = useAppSelector(getAuthState)
+
     useEffect(() => {
-        isCurrentUserMemberOfCommunity(communityResponse.id).then(r => {
-            console.log(`Is current user member of ${communityResponse.name}: ${r}`)
+        isCurrentUserMemberOfCommunity(jwt!, communityResponse.id).then(r => {
             setIsMember(r)
         })
     }, [])
 
     const doJoinCommunity = useCallback(() => {
-        console.log("Heyy")
-        joinCommunity(communityResponse.id).then((res) =>{
-            setIsMember(true)
-            console.log("waaa")
-        } )
-            .catch((e) => console.error("Cannot join community!"))
+        if (isAuthenticated) {
+            join(jwt!, communityResponse.id).then(() => setIsMember(true))
+        }
     }, [])
 
     return <Box sx={{width: '100%'}}>
