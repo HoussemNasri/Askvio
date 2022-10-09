@@ -10,31 +10,27 @@ import Home from "./pages/Home";
 import CssBaseline from "@mui/material/CssBaseline";
 import ExploreCommunities from "./pages/ExploreCommunities";
 import {useAppDispatch} from "./redux/app/hooks";
-import {loadAuthState} from "./redux/authSlice";
+import {PrivateRoute} from "./router/PrivateRoute";
 
 const theme = createTheme()
 
 function App() {
     const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        dispatch(loadAuthState())
-    }, [])
-
     return (
         <div className="App">
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
                 <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                        <Router>
-                            <Nav/>
+                    <Router>
+                        <Nav/>
 
-                            <Routes>
-                                <Route path='/' element={<Home/>}/>
-                                <Route path='/login' element={<Login/>}/>
-                                <Route path='/explore' element={<ExploreCommunities/>}></Route>
-                            </Routes>
-                        </Router>
+                        <Routes>
+                            <Route path='/' element={<Home/>}/>
+                            <Route path='/login' element={<Login/>}/>
+                            <Route path='/explore' element={<PrivateRoute><ExploreCommunities/></PrivateRoute>}></Route>
+                        </Routes>
+                    </Router>
                 </Box>
             </ThemeProvider>
         </div>

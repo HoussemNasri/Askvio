@@ -28,14 +28,6 @@ export const loginAsync = createAsyncThunk('auth/loginAsync', async ({email, pas
     }
 })
 
-export const loadAuthState = createAsyncThunk('auth/loadAuthState', async () => {
-    return {
-        currentUser: undefined,
-        jwt: getJwt(),
-        isAuthenticated: isAuthenticated()
-    } as AuthState
-})
-
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -50,13 +42,6 @@ export const authSlice = createSlice({
     extraReducers: (builder) => {
         builder.addCase(loginAsync.fulfilled, (state, action) => {
             state.isAuthenticated = true
-        })
-
-        builder.addCase(loadAuthState.fulfilled, (currentAuthState, loadedAuthStatePayload) => {
-            const {currentUser, isAuthenticated, jwt} = loadedAuthStatePayload.payload
-            currentAuthState.jwt = jwt
-            currentAuthState.currentUser = currentUser
-            currentAuthState.isAuthenticated = isAuthenticated
         })
     }
 
