@@ -40,4 +40,9 @@ public class Question {
     @ManyToOne
     @JoinColumn(name = "asker_account_id")
     private UserAccount askerAccount;
+
+
+    @ManyToOne
+    @JoinColumn(name = "asked_at_community_id")
+    private Community askedAtCommunity;
 }

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -56,6 +57,9 @@ public class Community {
             joinColumns = { @JoinColumn(name = "community_id") },
             inverseJoinColumns = { @JoinColumn(name = "member_id") })
     private Set<UserAccount> members;
+
+    @OneToMany(mappedBy = "askedAtCommunity")
+    private Set<Question> postedQuestions;
 
 
     public String getDisplayName() {

@@ -76,6 +76,7 @@ public class AskvioApplication implements CommandLineRunner {
                 "Welcome to the Houssem's Community",
                 Topic.PROGRAMMING,
                 Set.of(Topic.NEWS, Topic.TECHNOLOGY),
+                Set.of(),
                 Set.of()
         ));
 
@@ -87,6 +88,7 @@ public class AskvioApplication implements CommandLineRunner {
                 "VIP rocks all",
                 Topic.GAMING,
                 Set.of(Topic.SPORTS),
+                Set.of(),
                 Set.of()
         ));
     }
