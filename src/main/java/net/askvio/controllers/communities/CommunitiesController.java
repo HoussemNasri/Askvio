@@ -5,7 +5,7 @@ import java.util.Map;
 
 import lombok.AllArgsConstructor;
 import net.askvio.exceptions.NotImplementedException;
-import net.askvio.services.CommunityService;
+import net.askvio.services.communities.CommunityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;

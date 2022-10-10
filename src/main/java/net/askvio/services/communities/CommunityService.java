@@ -1,4 +1,4 @@
-package net.askvio.services;
+package net.askvio.services.communities;
 
 import java.util.List;
 import java.util.Objects;
