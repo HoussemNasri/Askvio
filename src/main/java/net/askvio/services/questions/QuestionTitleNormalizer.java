@@ -15,7 +15,7 @@ public class QuestionTitleNormalizer {
         if (title.isBlank()) {
             return "";
         } else {
-            return title.replaceAll("[,/_&.\\\\s]", "-")
+            return title.replaceAll("[,/_&.\\ ]+", "-")
                     .replaceAll("[^-\\w]", "")
                     // Remove suffix '-'
                     .replaceAll("-$", "")
