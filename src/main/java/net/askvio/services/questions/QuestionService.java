@@ -18,8 +18,10 @@ import net.askvio.model.UserAccount;
 import net.askvio.services.account.UserAccountService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Service;
 
 @AllArgsConstructor
+@Service
 public class QuestionService {
 
     private final QuestionTitleNormalizer questionTitleNormalizer;
