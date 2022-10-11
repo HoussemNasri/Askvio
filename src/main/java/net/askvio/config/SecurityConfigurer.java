@@ -28,6 +28,8 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
             .antMatchers(HttpMethod.POST, "/**/communities/{id}/join")
             .authenticated()
+            .antMatchers(HttpMethod.POST, "/**/questions")
+            .authenticated()
             .anyRequest()
             .permitAll();
 
