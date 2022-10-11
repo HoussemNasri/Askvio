@@ -5,6 +5,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import net.askvio.controllers.communities.CommunityResponse;
 import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
@@ -20,7 +21,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Service
 public class QuestionService {
 
@@ -32,7 +33,7 @@ public class QuestionService {
     private final CommunityRepository communityRepository;
 
     @Value("${react-app.url}")
-    private final String reactAppUrl;
+    private String reactAppUrl;
 
     public Optional<QuestionResponse> submitQuestion(SubmitQuestionRequest request, Authentication authentication) {
         Optional<UserAccount> principalAccount = userAccountService.getPrincipalUserAccount(authentication);
