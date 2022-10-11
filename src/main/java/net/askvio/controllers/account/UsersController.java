@@ -1,4 +1,4 @@
-package net.askvio.controllers.users;
+package net.askvio.controllers.account;
 
 import net.askvio.exceptions.NotImplementedException;
 import org.springframework.http.ResponseEntity;
