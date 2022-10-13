@@ -60,7 +60,10 @@ export default function Nav() {
     const isAuthenticated = useAppSelector(getAuthState).isAuthenticated
 
     return (<Box sx={{display: 'flex'}}>
-        <AppBar component="nav" position="sticky">
+        <AppBar component="nav" position="sticky" sx={{
+            height: '56px',
+            justifyContent: 'center'
+        }}>
             <Toolbar>
                 <Box sx={{display: 'flex', flexDirection: 'row', flexGrow: 1}}>
                     <Button component={RouterLink} to='/' sx={{color: '#fff'}}>
