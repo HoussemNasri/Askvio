@@ -6,7 +6,6 @@ import {Link, useLocation} from "react-router-dom";
 import {useState} from "react";
 
 export default function Sidebar() {
-    const [open, setOpen] = useState(false)
     const location = useLocation()
 
     const Menus = [
@@ -18,20 +17,12 @@ export default function Sidebar() {
 
     return (
         <>
-            <div
-                className={`${
-                    open ? 'w-60' : 'w-fit'
-                } hidden sm:block relative h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
+            <aside
+                className={`w-60 fixed sm:block h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
             >
-                <BsArrowLeftCircle
-                    className={`${
-                        !open && 'rotate-180'
-                    } absolute text-3xl bg-white fill-slate-800  rounded-full cursor-pointer top-9 -right-4 dark:fill-gray-400 dark:bg-gray-800`}
-                    onClick={() => setOpen(!open)}
-                />
                 <Link to='/'>
-                    <div className={`flex ${open && 'gap-x-4'} items-center`}>
-                        {open && (
+                    <div className={`flex ${'gap-x-4'} items-center`}>
+                        {(
                             <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
                                 Goal Quest
                             </span>
@@ -51,9 +42,7 @@ export default function Sidebar() {
                             >
                                 <span className='text-2xl'>{menu.src}</span>
                                 <span
-                                    className={`${
-                                        !open && 'hidden'
-                                    } origin-left duration-300 hover:block`}
+                                    className={`origin-left duration-300 hover:block`}
                                 >
                                     {menu.title}
                                 </span>
@@ -61,7 +50,7 @@ export default function Sidebar() {
                         </Link>
                     ))}
                 </ul>
-            </div>
+            </aside>
         </>
     )
 }
