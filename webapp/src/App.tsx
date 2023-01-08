@@ -1,7 +1,5 @@
-import React, {useEffect} from 'react';
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import {Box, Button, Container} from "@mui/material";
 import Login from "./pages/Login";
 import Nav from "./components/Nav";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
@@ -11,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import ExploreCommunities from "./pages/ExploreCommunities";
 import {useAppDispatch} from "./redux/app/hooks";
 import {PrivateRoute} from "./router/PrivateRoute";
+import Layout from "./components/Layout";
 
 const theme = createTheme()
 
@@ -21,17 +20,15 @@ function App() {
         <div className="App">
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <Box sx={{display: 'flex', flexDirection: 'column'}}>
-                    <Router>
-                        <Nav/>
-
+                <Router>
+                    <Layout>
                         <Routes>
                             <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/explore' element={<PrivateRoute><ExploreCommunities/></PrivateRoute>}></Route>
                         </Routes>
-                    </Router>
-                </Box>
+                    </Layout>
+                </Router>
             </ThemeProvider>
         </div>
     );
