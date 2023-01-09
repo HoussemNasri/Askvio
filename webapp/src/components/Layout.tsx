@@ -11,9 +11,9 @@ export default function Layout({children}: Props) {
         <>
             <div className="">
                 <Navbar/>
-                <div className="grow flex flex-auto">
+                <div className="grow flex flex-auto h-100">
                     <Sidebar/>
-                    <div className=" p-5 ml-60 m-5">{children}</div>
+                    <div className=" flex-auto p-5 ml-60 m-5">{children}</div>
                 </div>
             </div>
         </>)
