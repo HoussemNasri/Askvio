@@ -1,16 +1,19 @@
 import logo from '../logo.png'
+import {Link} from "react-router-dom";
+import Searchbar from "./Searchbar";
 
 export default function Navbar() {
     return <>
-        <nav className="flex flex-auto h-[72px] bg-gray-900 pl-5 w-100 sticky top-0 z-30">
-                <div className="w-60 flex items-center">
+        <nav className="flex flex-auto bg-stone-900 pl-5 sticky top-0 z-30">
+            <Link to="/">
+                <div className="p-4 w-60 flex items-center">
                     <img src={logo} alt="App Logo" className="h-[42px] object-center object-contain"/>
                 </div>
-                <ul className="flex flex-row gap-6 text-amber-50 items-center">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
+            </Link>
+            <Searchbar/>
+            <div className="w-60 text-center flex items-center text-white">
+                Notifications and stuff
+            </div>
         </nav>
     </>
 }
