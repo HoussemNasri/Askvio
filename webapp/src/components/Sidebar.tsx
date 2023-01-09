@@ -1,18 +1,26 @@
-import {SiOpenaccess, SiFuturelearn} from "react-icons/si";
-import {CgProfile} from 'react-icons/cg'
-import {AiFillPieChart} from 'react-icons/ai'
-import {BsArrowLeftCircle} from 'react-icons/bs'
+import {AiFillHome} from 'react-icons/ai'
 import {Link, useLocation} from "react-router-dom";
-import {useState} from "react";
+import {FaHandPaper} from "react-icons/fa";
+import {RiChatPollFill, RiProfileFill, RiUserSearchFill} from "react-icons/ri";
+import {HiUserGroup} from "react-icons/hi";
+import {IoMdPricetags, IoMdHelpBuoy} from "react-icons/io";
+import {GiTrophy} from "react-icons/gi";
+import {BsQuestionSquareFill} from "react-icons/bs";
 
 export default function Sidebar() {
     const location = useLocation()
 
     const Menus = [
-        {title: 'Dashboard', path: '/dashboard', src: <AiFillPieChart/>},
-        {title: 'Course', path: '/course', src: <SiFuturelearn/>},
-        {title: 'Profile', path: '/profile', src: <CgProfile/>},
-        {title: 'Signin', path: '/login', src: <SiOpenaccess/>, gap: 'true'},
+        {title: 'Home', path: '/', src: <AiFillHome/>},
+        {title: 'Ask Question', path: '/ask', src: <FaHandPaper/>},
+        {title: 'Profile', path: '/profile', src: <RiProfileFill/>},
+        {title: 'Communities', path: '/communities', src: <HiUserGroup/>},
+        {title: 'Questions', path: '/questions', src: <BsQuestionSquareFill/>},
+        {title: 'Polls', path: '/polls', src: <RiChatPollFill/>},
+        {title: 'Tags', path: '/tags', src: <IoMdPricetags/>},
+        {title: 'Badges', path: '/badges', src: <GiTrophy/>},
+        {title: 'Users', path: '/users', src: <RiUserSearchFill/>},
+        {title: 'Help', path: '/help', src: <IoMdHelpBuoy/>},
     ]
 
     return (
@@ -20,27 +28,12 @@ export default function Sidebar() {
             <aside
                 className={`w-60 fixed sm:block h-screen duration-300 bg-gray-100 border-r border-gray-200 dark:border-gray-600 p-5 dark:bg-slate-800`}
             >
-                <Link to='/'>
-                    <div className={`flex ${'gap-x-4'} items-center`}>
-                        {(
-                            <span className='text-xl font-medium whitespace-nowrap dark:text-white'>
-                                Goal Quest
-                            </span>
-                        )}
-                    </div>
-                </Link>
-
-                <ul className='pt-6'>
+                <ul className='gap-1 flex flex-col'>
                     {Menus.map((menu, index) => (
                         <Link to={menu.path} key={index}>
                             <li
-                                className={`flex items-center gap-x-6 p-3 text-base font-normal rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700
-                        ${menu.gap ? 'mt-9' : 'mt-2'} ${
-                                    location.pathname === menu.path &&
-                                    'bg-gray-200 dark:bg-gray-700'
-                                }`}
-                            >
-                                <span className='text-2xl'>{menu.src}</span>
+                                className={`flex items-center gap-x-4 p-3 text-base font-medium rounded-lg cursor-pointer dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700  ${location.pathname === menu.path && 'bg-gray-200 dark:bg-gray-700'}`}>
+                                <span className='text-xl'>{menu.src}</span>
                                 <span
                                     className={`origin-left duration-300 hover:block`}
                                 >
