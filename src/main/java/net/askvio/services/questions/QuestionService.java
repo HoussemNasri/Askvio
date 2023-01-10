@@ -4,15 +4,14 @@ import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
 
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import net.askvio.controllers.account.dto.UserResponse;
 import net.askvio.controllers.communities.CommunityResponse;
 import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
 import net.askvio.database.CommunityRepository;
 import net.askvio.database.QuestionRepository;
 import net.askvio.database.UserAccountRepository;
-import net.askvio.exceptions.NotImplementedException;
 import net.askvio.model.Community;
 import net.askvio.model.Question;
 import net.askvio.model.UserAccount;
@@ -59,6 +58,32 @@ public class QuestionService {
                 communityRepository.findCommunityById(request.communityId()).orElseThrow(),
                 generateQuestionLink(submittedQuestion.getId(), submittedQuestion.getTitle())
         ));
+    }
+
+    public Optional<QuestionResponse> getQuestionById(Long id) {
+        return questionRepository.findById(id)
+                                 .map(question -> new QuestionResponse(
+                                         question.getId(),
+                                         question.getTitle(),
+                                         question.getContent(),
+                                         question.getCreationDate(),
+                                         lookupOwner(question),
+                                         lookupCommunity(question),
+                                         // TODO: Optimization - Store question link in the database so we don't generate the url
+                                         //    everytime the question is accessed
+                                         generateQuestionLink(question.getId(), question.getTitle())
+                                 ));
+    }
+
+    private CommunityResponse lookupCommunity(Question question) {
+        // TODO: Optimization - Possible performance optimization. We're loading Community 2 times:
+        //    First time, when accessing community id and second time when calling the community repository
+        return communityRepository.findCommunityById(question.getAskedAtCommunity().getId()).orElseThrow();
+    }
+
+    private UserResponse lookupOwner(Question question) {
+        // TODO: Optimization - Could be optimized too. See lookupCommunity() for more info
+        return userAccountRepository.findUserResponseDTOByEmail(question.getAskerAccount().getEmail()).orElseThrow();
     }
 
     public String generateQuestionLink(Long questionId, String questionTitle) {
