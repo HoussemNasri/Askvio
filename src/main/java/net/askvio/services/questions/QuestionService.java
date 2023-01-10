@@ -62,17 +62,7 @@ public class QuestionService {
 
     public Optional<QuestionResponse> getQuestionById(Long id) {
         return questionRepository.findById(id)
-                                 .map(question -> new QuestionResponse(
-                                         question.getId(),
-                                         question.getTitle(),
-                                         question.getContent(),
-                                         question.getCreationDate(),
-                                         lookupOwner(question),
-                                         lookupCommunity(question),
-                                         // TODO: Optimization - Store question link in the database so we don't generate the url
-                                         //    everytime the question is accessed
-                                         generateQuestionLink(question.getId(), question.getTitle())
-                                 ));
+                                 .map(this::convertQuestionToResponse);
     }
 
     private CommunityResponse lookupCommunity(Question question) {
@@ -84,6 +74,19 @@ public class QuestionService {
     private UserResponse lookupOwner(Question question) {
         // TODO: Optimization - Could be optimized too. See lookupCommunity() for more info
         return userAccountRepository.findUserResponseDTOByEmail(question.getAskerAccount().getEmail()).orElseThrow();
+    }
+
+    public QuestionResponse convertQuestionToResponse(Question question) {
+        return new QuestionResponse(
+                question.getId(),
+                question.getTitle(),
+                question.getContent(),
+                question.getCreationDate(),
+                lookupOwner(question),
+                lookupCommunity(question),
+                // TODO: Optimization - Store question link in the database so we don't generate the url
+                //    everytime the question is accessed
+                generateQuestionLink(question.getId(), question.getTitle()));
     }
 
     public String generateQuestionLink(Long questionId, String questionTitle) {
