@@ -22,7 +22,7 @@ public class FeedService {
      * */
     public List<QuestionResponse> getFeed() {
         return questionRepository.generateFeed(Pageable.ofSize(10))
-                                 .stream().map(questionService::convertQuestionToResponse)
+                                 .stream().map(questionService::mapQuestionToQuestionResponse)
                                  .toList();
     }
 }

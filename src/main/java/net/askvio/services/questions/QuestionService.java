@@ -62,12 +62,10 @@ public class QuestionService {
 
     public Optional<QuestionResponse> getQuestionById(Long id) {
         return questionRepository.findById(id)
-                                 .map(this::convertQuestionToResponse);
+                                 .map(this::mapQuestionToQuestionResponse);
     }
 
     private CommunityResponse lookupCommunity(Question question) {
-        // TODO: Optimization - Possible performance optimization. We're loading Community 2 times:
-        //    First time, when accessing community id and second time when calling the community repository
         return communityRepository.findCommunityById(question.getAskedAtCommunity().getId()).orElseThrow();
     }
 
@@ -75,7 +73,7 @@ public class QuestionService {
         return userAccountRepository.findUserResponseDTOById(question.getAskerAccount().getId()).orElseThrow();
     }
 
-    public QuestionResponse convertQuestionToResponse(Question question) {
+    public QuestionResponse mapQuestionToQuestionResponse(Question question) {
         return new QuestionResponse(
                 question.getId(),
                 question.getTitle(),
