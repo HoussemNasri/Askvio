@@ -72,8 +72,7 @@ public class QuestionService {
     }
 
     private UserResponse lookupOwner(Question question) {
-        // TODO: Optimization - Could be optimized too. See lookupCommunity() for more info
-        return userAccountRepository.findUserResponseDTOByEmail(question.getAskerAccount().getEmail()).orElseThrow();
+        return userAccountRepository.findUserResponseDTOById(question.getAskerAccount().getId()).orElseThrow();
     }
 
     public QuestionResponse convertQuestionToResponse(Question question) {
