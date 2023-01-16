@@ -32,10 +32,6 @@ export default function Home() {
 
     const {data, error, isLoading} = useGetFeedQuery()
 
-    useEffect(() => {
-        console.log(data)
-    }, [data])
-
     return (
         <div className="flex">
             {
