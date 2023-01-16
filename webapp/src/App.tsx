@@ -6,7 +6,7 @@ import ExploreCommunities from "./pages/ExploreCommunities";
 import {useAppDispatch} from "./redux/app/hooks";
 import {PrivateRoute} from "./router/PrivateRoute";
 import Layout from "./components/Layout";
-import PageNotFound from "./pages/PageNotFound";
+import Page404 from "./pages/Page404";
 
 function App() {
     const dispatch = useAppDispatch()
@@ -19,7 +19,7 @@ function App() {
                             <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/explore' element={<PrivateRoute><ExploreCommunities/></PrivateRoute>}></Route>
-                            <Route path='*' element={<PageNotFound/>} />
+                            <Route path='*' element={<Page404/>} />
                         </Routes>
                     </Layout>
                 </Router>
