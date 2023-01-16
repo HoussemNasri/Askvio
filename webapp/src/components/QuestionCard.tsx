@@ -4,6 +4,7 @@ import {BsEye} from "react-icons/bs";
 import {BiComment} from "react-icons/bi";
 import {randomInt} from "../utils/RandomUtils";
 import {BiUpvote} from "react-icons/bi"
+import {Link} from "react-router-dom";
 
 export type Question = {
     communityName: string
@@ -55,6 +56,9 @@ function QuestionFooter({commentsCount, viewsCount}: QuestionFooterProps) {
     </div>
 }
 
+function extractRoutePath(url: string) {
+    return new URL(url).pathname
+}
 export default function QuestionCard({
                                          title,
                                          content,
@@ -64,7 +68,7 @@ export default function QuestionCard({
                                          link
                                      }: QuestionResponse) {
     return (
-        <a href={link}
+        <Link to={extractRoutePath(link)}
            className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div className="flex flex-row items-center gap-1">
                 <img className="w-8 h-8 rounded-full"
@@ -85,6 +89,6 @@ export default function QuestionCard({
                 {content}
             </p>
             <QuestionFooter commentsCount={randomInt(100)} viewsCount={randomInt(100)}/>
-        </a>
+        </Link>
     )
 }
