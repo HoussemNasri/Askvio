@@ -3,6 +3,7 @@ import {convertToRelativeDate} from "../utils/DateUtils";
 import {BsEye} from "react-icons/bs";
 import {BiComment} from "react-icons/bi";
 import {randomInt} from "../utils/RandomUtils";
+import {BiUpvote} from "react-icons/bi"
 
 export type Question = {
     communityName: string
@@ -26,6 +27,10 @@ interface QuestionFooterProps {
 
 function QuestionFooter({commentsCount, viewsCount}: QuestionFooterProps) {
     const footerItems: QuestionFooterItem[] = [
+        {
+            title: `${viewsCount} votes`,
+            icon: <BiUpvote className="w-5 h-5"/>
+        },
         {
             title: `${commentsCount} answers`,
             icon: <BiComment className="w-5 h-5 mt-1"/>
@@ -55,10 +60,11 @@ export default function QuestionCard({
                                          content,
                                          community,
                                          owner,
-                                         creationDate
+                                         creationDate,
+                                         link
                                      }: QuestionResponse) {
     return (
-        <a href="#"
+        <a href={link}
            className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div className="flex flex-row items-center gap-1">
                 <img className="w-8 h-8 rounded-full"

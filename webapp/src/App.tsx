@@ -7,6 +7,7 @@ import {useAppDispatch} from "./redux/app/hooks";
 import {PrivateRoute} from "./router/PrivateRoute";
 import Layout from "./components/Layout";
 import Page404 from "./pages/Page404";
+import QuestionPost from "./pages/QuestionPost";
 
 function App() {
     const dispatch = useAppDispatch()
@@ -19,6 +20,7 @@ function App() {
                             <Route path='/' element={<Home/>}/>
                             <Route path='/login' element={<Login/>}/>
                             <Route path='/explore' element={<PrivateRoute><ExploreCommunities/></PrivateRoute>}></Route>
+                            <Route path='/questions/:questionId/*' element={<QuestionPost/>}></Route>
                             <Route path='*' element={<Page404/>} />
                         </Routes>
                     </Layout>
