@@ -1,4 +1,6 @@
 import QuestionCard, {Question} from "../components/QuestionCard";
+import {useGetFeedQuery} from "../redux/feedSlice";
+import {useEffect} from "react";
 
 export default function Home() {
     const questions: Question[] = [
@@ -27,12 +29,24 @@ export default function Home() {
             commentsCount: 4
         },
     ]
+
+    const {data, error, isLoading} = useGetFeedQuery()
+
+    useEffect(() => {
+        console.log(data)
+    }, [data])
+
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex">
             {
-                questions.map(question => {
-                    return <QuestionCard {...question}/>
-                })
+                isLoading ? (<p>Loading...</p>) : (<div className="flex flex-col gap-5">
+                    {
+                        data?.feed.map(question => {
+                            return <QuestionCard {...question}/>
+                        })
+                    }
+                </div>)
             }
-        </div>)
+        </div>
+    )
 }
