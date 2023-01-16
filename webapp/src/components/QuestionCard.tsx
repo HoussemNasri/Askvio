@@ -72,7 +72,7 @@ export default function QuestionCard({
            className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div className="flex flex-row items-center gap-1">
                 <img className="w-8 h-8 rounded-full"
-                     src={`https://api.dicebear.com/5.x/bottts/svg?seed=${Math.floor(Math.random() * 100)}`}
+                     src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
                      alt="Rounded avatar"/>
                 <p className="text-sm font-bold">
                     v/{community.name}

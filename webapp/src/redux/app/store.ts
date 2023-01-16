@@ -2,11 +2,13 @@ import {configureStore} from "@reduxjs/toolkit";
 import authReducer, {AuthState} from "../authSlice";
 import {getJwt, isAuthenticated} from "../../services/storageService";
 import {feedAPI} from "../feedSlice";
+import {questionAPI} from "../questionSlice";
 
 export const store = configureStore({
         reducer: {
             auth: authReducer,
-            [feedAPI.reducerPath]: feedAPI.reducer
+            [feedAPI.reducerPath]: feedAPI.reducer,
+            [questionAPI.reducerPath]: questionAPI.reducer
         },
         preloadedState: {
             auth: {
@@ -15,7 +17,7 @@ export const store = configureStore({
                 jwt: (getJwt() == undefined ? '' : getJwt())!
             }
         },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(feedAPI.middleware)
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(feedAPI.middleware).concat(questionAPI.middleware)
     }
 )
 
