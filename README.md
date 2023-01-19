@@ -1,5 +1,5 @@
 # Askvio
-Askvio is an open source, community-driven and professional forum platform for small and large communities. It allows users to earn money for their contributions and helps you get your message across in the best possible way. Based on the concept of blockchain, Askvio uses crypto tokens to reward its users for creating, curating and answering questions.
+Askvio is an online knowledge platform created to help people find the answers they need. It's a place to discuss and get advice on any topic you want - from cooking and fitness to technology, cryptocurrency, and blockchain. Users share their experience with others, answering questions for rewards in VIO tokens.
 
 ## Features
 - **Newsfeed** – A comprehensive layout displaying an overview of all user activities & posts.
