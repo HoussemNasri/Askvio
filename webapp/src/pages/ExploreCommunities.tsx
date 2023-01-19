@@ -14,7 +14,7 @@ interface TabPanelProps {
 }
 
 export default function ExploreCommunities() {
-    const [category, setCategory] = useState(1)
+    /*const [category, setCategory] = useState(1)
     const [communities, setCommunities] = useState(new Array<CommunityResponse>())
 
     useEffect(() => {
@@ -71,5 +71,5 @@ export default function ExploreCommunities() {
                 <h3>Hello Three</h3>
             </TabPanel>
         </Box>
-    </Container>;
+    </Container>;*/
 }

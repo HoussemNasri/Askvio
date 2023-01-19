@@ -18,8 +18,6 @@ function App() {
                     <Layout>
                         <Routes>
                             <Route path='/' element={<Home/>}/>
-                            <Route path='/login' element={<Login/>}/>
-                            <Route path='/explore' element={<PrivateRoute><ExploreCommunities/></PrivateRoute>}></Route>
                             <Route path='/questions/:questionId/*' element={<QuestionPost/>}></Route>
                             <Route path='*' element={<Page404/>} />
                         </Routes>

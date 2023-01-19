@@ -22,7 +22,7 @@ import {getAuthState, loginAsync} from "../redux/authSlice";
 const theme = createTheme();
 
 export default function Login() {
-    const navigate = useNavigate()
+    /*const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const authState = useAppSelector(getAuthState)
 
@@ -127,5 +127,5 @@ export default function Login() {
                 </Box>
             </Box>
         </Container>
-    );
+    );*/
 }
