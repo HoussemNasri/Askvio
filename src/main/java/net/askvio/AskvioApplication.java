@@ -10,6 +10,7 @@ import net.askvio.model.Community;
 import net.askvio.model.CommunityType;
 import net.askvio.model.Topic;
 import net.askvio.model.UserAccount;
+import net.askvio.services.avatar.AvatarType;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -27,6 +28,8 @@ public class AskvioApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        System.out.println(userAccountRepository.findUserResponseDTOByEmail("JohnKRamirez@dayrep.com"));
+
         /* loadTestUserAccounts();
         loadTestCommunities();*/
     }
@@ -41,6 +44,7 @@ public class AskvioApplication implements CommandLineRunner {
                 "123",
                 Instant.parse("2018-06-01T18:35:24.00Z"),
                 true,
+                AvatarType.GENERATED,
                 Set.of()
         ));
         userAccountRepository.save(new UserAccount(
@@ -52,6 +56,7 @@ public class AskvioApplication implements CommandLineRunner {
                 "Am0neeth1",
                 Instant.parse("2020-07-19T18:35:24.00Z"),
                 true,
+                AvatarType.GENERATED,
                 Set.of()
         ));
         userAccountRepository.save(new UserAccount(
@@ -63,6 +68,7 @@ public class AskvioApplication implements CommandLineRunner {
                 "Engeroof0",
                 Instant.parse("2021-01-02T18:35:24.00Z"),
                 true,
+                AvatarType.GENERATED,
                 Set.of()
         ));
     }

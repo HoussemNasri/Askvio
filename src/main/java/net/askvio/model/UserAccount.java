@@ -5,6 +5,8 @@ import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import net.askvio.services.avatar.AvatarType;
 
 @Entity
 @AllArgsConstructor
@@ -37,6 +40,10 @@ public class UserAccount {
     private String hashedPassword;
     private Instant creationDate;
     private Boolean activated;
+
+    @Enumerated(EnumType.STRING)
+    private AvatarType avatarType;
+
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Community> joinedCommunities;
 
