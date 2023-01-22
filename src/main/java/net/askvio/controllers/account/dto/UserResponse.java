@@ -2,13 +2,26 @@ package net.askvio.controllers.account.dto;
 
 import java.time.Instant;
 
-public record UserResponse(
-        Long accountId,
-        String firstname,
-        String lastname,
-        String username,
-        String email,
-        boolean hasActiveAccount,
-        Instant accountCreationDate
-) {
+import org.springframework.beans.factory.annotation.Value;
+
+public interface UserResponse {
+    @Value("#{target.id}")
+    Long getAccountId();
+
+    String getFirstname();
+
+    String getLastname();
+
+    String getUsername();
+
+    String getEmail();
+
+    @Value("#{@aggregateAvatarService.getUserAvatar(target.id).link()}")
+    String getAvatar();
+
+    @Value("#{target.activated}")
+    boolean hasActiveAccount();
+
+    @Value("#{target.creationDate}")
+    Instant getAccountCreationDate();
 }

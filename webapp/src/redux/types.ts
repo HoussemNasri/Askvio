@@ -31,6 +31,7 @@ export interface UserResponse {
     lastname:            string;
     username:            string;
     email:               string;
+    avatar:              string;
     hasActiveAccount:    boolean;
     accountCreationDate: Date;
 }
