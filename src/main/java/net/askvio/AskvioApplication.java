@@ -28,10 +28,6 @@ public class AskvioApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        System.out.println(userAccountRepository.findUserResponseDTOByEmail("JohnKRamirez@dayrep.com"));
-
-        /* loadTestUserAccounts();
-        loadTestCommunities();*/
     }
 
     private void loadTestUserAccounts() {
