@@ -31,18 +31,11 @@ export default function QuestionPost() {
                 <UpvoteDownvote/>
                 <Bookmark/>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col grow">
                 <div className="flex flex-row items-center gap-1">
-                    {/*<img className="w-5 h-5 rounded-full"
-                         src={`https://api.dicebear.com/5.x/bottts/svg?seed=${data.community.name}`}
-                         alt="Rounded avatar"/>*/}
                     <p className="text-xs font-bold text-sky-600 mt-1">
                         v/{data.community.name}
                     </p>
-                    {/*<p>·</p>
-                    <p className="text-gray-500 text-xs">
-                        Posted by u/{data.owner.username} {convertToRelativeDate(data.creationDate)}
-                    </p>*/}
                 </div>
                 <h5 className="mb-2 text-3xl font-semibold text-gray-800 tracking-tight text-gray-900 dark:text-white">
                     {data.title}
@@ -58,7 +51,7 @@ export default function QuestionPost() {
                     </div>
                 </div>
                 <hr className="mt-1 mb-3"></hr>
-                <p className="font-normal text-gray-700 dark:text-gray-400 max-w-3xl">
+                <p className="font-normal text-gray-700 dark:text-gray-400">
                     {data.content}
                 </p>
                 <div className="flex flex-row mt-16">
