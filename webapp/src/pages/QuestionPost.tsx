@@ -3,7 +3,6 @@ import React, {useEffect} from "react";
 import {useGetQuestionByIdQuery} from "../redux/questionSlice";
 import {randomInt} from "../utils/RandomUtils";
 import {Loader} from "../components/Loader";
-import {convertToRelativeDate} from "../utils/DateUtils";
 import UpvoteDownvote from "../components/UpvoteDownvote";
 import Bookmark from "../components/Bookmark";
 import UserInfo from "../components/UserInfo";
@@ -25,7 +24,7 @@ export default function QuestionPost() {
         console.log(data)
     }, [data])
 
-    return <div className="flex flex-auto flex-col max-w-4xl">
+    return <div className="flex flex-auto flex-col">
         {isLoading ? <Loader/> : (data && <div className="flex flex-row">
             <div className="flex flex-col mr-4 items-center gap-4">
                 <UpvoteDownvote/>
@@ -51,21 +50,23 @@ export default function QuestionPost() {
                     </div>
                 </div>
                 <hr className="mt-1 mb-3"></hr>
-                <p className="font-normal text-gray-700 dark:text-gray-400">
-                    {data.content}
-                </p>
-                <div className="flex flex-row mt-16">
-                    <div className="flex flex-row text-gray-600 gap-2 grow text-sm">
-                        <p>Share</p>
-                        <p>Edit</p>
-                        <p>Follow</p>
-                        <p>Flag</p>
+                <div className="max-w-2xl">
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                        {data.content}
+                    </p>
+                    <div className="flex flex-row mt-16">
+                        <div className="flex flex-row text-gray-600 gap-2 grow text-sm">
+                            <p>Share</p>
+                            <p>Edit</p>
+                            <p>Follow</p>
+                            <p>Flag</p>
+                        </div>
+                        <UserInfo userDetails={data.owner} action="asked" actionTime={data.creationDate} isOwner={true}/>
                     </div>
-                    <UserInfo userDetails={data.owner} action="asked" actionTime={data.creationDate} isOwner={true}/>
+                    <p className="text-lg mt-10">
+                        3 Answers
+                    </p>
                 </div>
-                <p className="text-lg mt-10">
-                    3 Answers
-                </p>
             </div>
         </div>)
         }
