@@ -1,5 +1,10 @@
 # Askvio
-Askvio is an online knowledge platform created to help people find the answers they need. It's a place to discuss and get advice on any topic you want - from cooking and fitness to technology, cryptocurrency, and blockchain. Users share their experience with others, answering questions for rewards in VIO tokens.
+> *“Give and take is fair play” — English Proverb*
+
+Askvio is an online knowledge platform created to help people find the answers they need. It's a place to discuss and get advice on any topic you want - from cooking and fitness to technology, cryptocurrency, and blockchain. Users share their experience with others, answering questions for rewards in VIO tokens. It is based on giving and receiving as well as having and sharing, and the knowledge that it has is shared and recieved, and through this having and giving and sharing and recieving, everyone should have, give, share and recieve.
+
+## Motivation
+Research showed that in Q&A sites, only *5%* of users are responsable for *65%* of the answers. The results show a clear lack of participation for *95%* of users.
 
 ## Features
 - **Newsfeed** – A comprehensive layout displaying an overview of all user activities & posts.
