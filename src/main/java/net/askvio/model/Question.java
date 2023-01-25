@@ -2,6 +2,7 @@ package net.askvio.model;
 
 import java.time.Instant;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -28,6 +29,7 @@ public class Question {
     @NotBlank
     private String title;
 
+    @Column(length = 30_000)
     private String content;
 
     // TODO: Distinguish between creation date and submission date as a question is not guaranteed
