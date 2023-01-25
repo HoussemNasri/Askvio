@@ -15,7 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import net.askvio.services.avatar.AvatarType;
