@@ -27,6 +27,7 @@ public class Answer {
     private String content;
     private Instant creationDate;
     private Integer voteCount;
+    private boolean isAccepted;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "answerer_account_id")
     private UserAccount answererAccount;
