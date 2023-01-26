@@ -21,7 +21,7 @@ public class FeedService {
      * However, for testing purposes, we are serving a static feed to all users
      * */
     public List<QuestionResponse> getFeed() {
-        return questionRepository.generateFeed(Pageable.ofSize(10))
+        return questionRepository.generateFeed(Pageable.ofSize(25))
                                  .stream().map(questionService::mapQuestionToQuestionResponse)
                                  .toList();
     }
