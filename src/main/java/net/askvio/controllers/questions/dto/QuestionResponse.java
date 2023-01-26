@@ -10,6 +10,8 @@ public record QuestionResponse(
         String title,
         String content,
         Instant creationDate,
+        Integer voteCount,
+        Integer answersCount,
         UserResponse owner,
         CommunityResponse community,
         String link

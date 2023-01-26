@@ -10,6 +10,7 @@ import net.askvio.controllers.account.dto.UserResponse;
 import net.askvio.controllers.communities.CommunityResponse;
 import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
+import net.askvio.database.AnswerRepository;
 import net.askvio.database.CommunityRepository;
 import net.askvio.database.QuestionRepository;
 import net.askvio.database.UserAccountRepository;
@@ -27,10 +28,10 @@ public class QuestionService {
 
     private final QuestionTitleNormalizer questionTitleNormalizer;
     private final UserAccountService userAccountService;
-
     private final UserAccountRepository userAccountRepository;
     private final QuestionRepository questionRepository;
     private final CommunityRepository communityRepository;
+    private final AnswerRepository answerRepository;
 
     @Value("${react-app.url}")
     private String reactAppUrl;
@@ -55,6 +56,7 @@ public class QuestionService {
                 submittedQuestion.getTitle(),
                 submittedQuestion.getContent(),
                 submittedQuestion.getCreationDate(),
+                0,0,
                 userAccountRepository.findUserResponseDTOByEmail(principalAccount.get().getEmail()).orElseThrow(),
                 communityRepository.findCommunityById(request.communityId()).orElseThrow(),
                 generateQuestionLink(submittedQuestion.getId(), submittedQuestion.getTitle())
@@ -80,6 +82,8 @@ public class QuestionService {
                 question.getTitle(),
                 question.getContent(),
                 question.getCreationDate(),
+                question.getVoteCount(),
+                answerRepository.countByQuestion(question),
                 lookupOwner(question),
                 lookupCommunity(question),
                 // TODO: Optimization - Store question link in the database so we don't generate the url

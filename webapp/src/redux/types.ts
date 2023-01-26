@@ -8,6 +8,8 @@ export interface QuestionResponse {
     title:        string;
     content:      string;
     creationDate: Date;
+    voteCount:    number;
+    answersCount: number;
     owner:        UserResponse;
     community:    CommunityResponse;
     link:         string;
