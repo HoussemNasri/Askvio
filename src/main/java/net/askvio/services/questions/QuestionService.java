@@ -1,6 +1,7 @@
 package net.askvio.services.questions;
 
 import java.time.Instant;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -46,7 +47,7 @@ public class QuestionService {
         }
 
         Question submittedQuestion = new Question(null, request.title(),
-                request.content(), Instant.now(), 0, principalAccount.get(), community.get());
+                request.content(), Instant.now(), 0, principalAccount.get(), community.get(), Collections.emptyList());
         submittedQuestion = questionRepository.save(submittedQuestion);
 
         return Optional.of(new QuestionResponse(
