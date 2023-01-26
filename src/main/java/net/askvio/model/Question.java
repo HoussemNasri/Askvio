@@ -1,6 +1,7 @@
 package net.askvio.model;
 
 import java.time.Instant;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -44,8 +46,9 @@ public class Question {
     @JoinColumn(name = "asker_account_id")
     private UserAccount askerAccount;
 
-
     @ManyToOne
     @JoinColumn(name = "asked_at_community_id")
     private Community askedAtCommunity;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
+    private List<Answer> answers;
 }
