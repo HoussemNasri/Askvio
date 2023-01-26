@@ -34,7 +34,7 @@ public class AnswersController {
      */
     @GetMapping("/questions/{questionId}/answers")
     public List<AnswerResponse> getAnswersOnQuestion(@PathVariable Long questionId) {
-        return Collections.emptyList();
+        return answersService.getAnswersOnQuestion(questionId);
     }
 
     @GetMapping("/answers/{answerId}")

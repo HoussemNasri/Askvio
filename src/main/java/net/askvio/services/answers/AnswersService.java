@@ -1,5 +1,6 @@
 package net.askvio.services.answers;
 
+import java.util.List;
 import java.util.Optional;
 
 import lombok.RequiredArgsConstructor;
@@ -21,6 +22,10 @@ public class AnswersService {
 
     public Optional<AnswerResponse> getAnswerById(Long id) {
         return answerRepository.findById(id).map(this::mapAnswerToAnswerResponse);
+    }
+
+    public List<AnswerResponse> getAnswersOnQuestion(Long questionId) {
+        return answerRepository.getAnswersOnQuestion(questionId).stream().map(this::mapAnswerToAnswerResponse).toList();
     }
 
     private UserResponse lookupOwner(Answer answer) {
