@@ -8,6 +8,7 @@ public record AnswerResponse(
         Long id,
         String content,
         Instant creationDate,
+        Integer voteCount,
         UserResponse owner,
         Long questionId,
         boolean isAccepted,
