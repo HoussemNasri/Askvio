@@ -27,7 +27,7 @@ export default function QuestionPost() {
     return <div className="flex flex-auto flex-col">
         {isLoading ? <Loader/> : (data && <div className="flex flex-row">
             <div className="flex flex-col mr-4 items-center gap-4">
-                <UpvoteDownvote/>
+                <UpvoteDownvote voteCount={data.voteCount}/>
                 <Bookmark/>
             </div>
             <div className="flex flex-col grow">
@@ -64,7 +64,7 @@ export default function QuestionPost() {
                         <UserInfo userDetails={data.owner} action="asked" actionTime={data.creationDate} isOwner={true}/>
                     </div>
                     <p className="text-lg mt-10">
-                        3 Answers
+                        {data.answersCount} Answers
                     </p>
                 </div>
             </div>

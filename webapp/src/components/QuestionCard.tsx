@@ -2,7 +2,6 @@ import {QuestionResponse} from "../redux/types";
 import {convertToRelativeDate} from "../utils/DateUtils";
 import {BsEye} from "react-icons/bs";
 import {BiComment} from "react-icons/bi";
-import {randomInt} from "../utils/RandomUtils";
 import {BiUpvote} from "react-icons/bi"
 import {Link} from "react-router-dom";
 
@@ -22,18 +21,18 @@ interface QuestionFooterItem {
 }
 
 interface QuestionFooterProps {
-    commentsCount: number,
+    answersCount: number,
     viewsCount: number
 }
 
-function QuestionFooter({commentsCount, viewsCount}: QuestionFooterProps) {
+function QuestionFooter({answersCount, viewsCount}: QuestionFooterProps) {
     const footerItems: QuestionFooterItem[] = [
         {
             title: `${viewsCount} votes`,
             icon: <BiUpvote className="w-5 h-5"/>
         },
         {
-            title: `${commentsCount} answers`,
+            title: `${answersCount} answers`,
             icon: <BiComment className="w-5 h-5 mt-1"/>
         },
         {
@@ -59,17 +58,20 @@ function QuestionFooter({commentsCount, viewsCount}: QuestionFooterProps) {
 function extractRoutePath(url: string) {
     return new URL(url).pathname
 }
+
 export default function QuestionCard({
                                          title,
                                          content,
                                          community,
                                          owner,
                                          creationDate,
+                                         answersCount,
+                                         voteCount,
                                          link
                                      }: QuestionResponse) {
     return (
         <Link to={extractRoutePath(link)}
-           className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
             <div className="flex flex-row items-center gap-1">
                 <img className="w-8 h-8 rounded-full"
                      src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
@@ -88,7 +90,7 @@ export default function QuestionCard({
             <p className="font-normal text-gray-700 dark:text-gray-400 max-w-3xl">
                 {content}
             </p>
-            <QuestionFooter commentsCount={randomInt(100)} viewsCount={randomInt(100)}/>
+            <QuestionFooter answersCount={answersCount} viewsCount={voteCount}/>
         </Link>
     )
 }
