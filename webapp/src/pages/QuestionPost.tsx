@@ -5,6 +5,7 @@ import {randomInt} from "../utils/RandomUtils";
 import {Loader} from "../components/Loader";
 import Post from "../components/Post";
 import {QuestionResponse} from "../redux/types";
+import AnswerList from "../components/AnswerList";
 
 function CommunityHeader() {
     return <div className="flex flex-row p-2 bg-gray-300 fixed top-[72px] left-60 right-0 items-center">
@@ -58,6 +59,9 @@ export default function QuestionPost() {
                 (<>
                     <QuestionPostHeader {...data}/>
                     <Post {...data}/>
+                    {
+                        data.answersCount > 0 && <AnswerList questionId={data.id}/>
+                    }
                 </>)
             )
         }
