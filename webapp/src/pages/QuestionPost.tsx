@@ -6,6 +6,8 @@ import {Loader} from "../components/Loader";
 import UpvoteDownvote from "../components/UpvoteDownvote";
 import Bookmark from "../components/Bookmark";
 import UserInfo from "../components/UserInfo";
+import Post from "../components/Post";
+import {QuestionResponse} from "../redux/types";
 
 function CommunityHeader() {
     return <div className="flex flex-row p-2 bg-gray-300 fixed top-[72px] left-60 right-0 items-center">
@@ -14,6 +16,40 @@ function CommunityHeader() {
              alt="Rounded avatar"/>
         <p className="text-base text-gray-800 font-bold">r/learnjava</p>
     </div>
+}
+
+interface QuestionPostHeaderProps {
+    title: string,
+    communityName: string
+}
+
+function QuestionPostHeader(question: QuestionResponse) {
+    return (<div className="flex flex-col">
+            <div className="flex items-center gap-1">
+                <p className="text-xs font-bold text-sky-600 mt-1">
+                    v/{question.community.name}
+                </p>
+            </div>
+            <h5 className="mb-2 text-3xl font-semibold text-gray-800 tracking-tight text-gray-900 dark:text-white">
+                {question.title}
+            </h5>
+            <div className="flex flex-row gap-4 mb-2">
+                <div className="flex flex-row gap-1.5 text-sm">
+                    <p className="text-gray-600">Asked</p>
+                    <p className="">10 hours ago</p>
+                </div>
+                <div className="flex flex-row gap-1.5 text-sm">
+                    <p className="text-gray-600">Modified</p>
+                    <p className="">2 days ago</p>
+                </div>
+                <div className="flex flex-row gap-1.5 text-sm">
+                    <p className="text-gray-600">Viewed</p>
+                    <p className="">120 times</p>
+                </div>
+            </div>
+            <hr className="mt-1 mb-3"></hr>
+        </div>
+    )
 }
 
 export default function QuestionPost() {
@@ -25,50 +61,12 @@ export default function QuestionPost() {
     }, [data])
 
     return <div className="flex flex-auto flex-col">
-        {isLoading ? <Loader/> : (data && <div className="flex flex-row">
-            <div className="flex flex-col mr-4 items-center gap-4">
-                <UpvoteDownvote voteCount={data.voteCount}/>
-                <Bookmark/>
-            </div>
-            <div className="flex flex-col grow">
-                <div className="flex flex-row items-center gap-1">
-                    <p className="text-xs font-bold text-sky-600 mt-1">
-                        v/{data.community.name}
-                    </p>
+        {isLoading ? <Loader/> :
+            (data && <div className="flex flex-col grow">
+                    <QuestionPostHeader {...data}/>
+                    <Post {...data}/>
                 </div>
-                <h5 className="mb-2 text-3xl font-semibold text-gray-800 tracking-tight text-gray-900 dark:text-white">
-                    {data.title}
-                </h5>
-                <div className="flex flex-row gap-4 mb-2">
-                    <div className="flex flex-row gap-1.5 text-sm">
-                        <p className="text-gray-600">Modified</p>
-                        <p className="">2 days ago</p>
-                    </div>
-                    <div className="flex flex-row gap-1.5 text-sm">
-                        <p className="text-gray-600">Viewed</p>
-                        <p className="">120 times</p>
-                    </div>
-                </div>
-                <hr className="mt-1 mb-3"></hr>
-                <div className="max-w-2xl">
-                    <p className="font-normal text-gray-700 dark:text-gray-400">
-                        {data.content}
-                    </p>
-                    <div className="flex flex-row mt-16">
-                        <div className="flex flex-row text-gray-600 gap-2 grow text-sm">
-                            <p>Share</p>
-                            <p>Edit</p>
-                            <p>Follow</p>
-                            <p>Flag</p>
-                        </div>
-                        <UserInfo userDetails={data.owner} action="asked" actionTime={data.creationDate} isOwner={true}/>
-                    </div>
-                    <p className="text-lg mt-10">
-                        {data.answersCount} Answers
-                    </p>
-                </div>
-            </div>
-        </div>)
+            )
         }
     </div>
 }
