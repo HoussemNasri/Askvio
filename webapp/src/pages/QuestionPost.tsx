@@ -3,9 +3,6 @@ import React, {useEffect} from "react";
 import {useGetQuestionByIdQuery} from "../redux/questionSlice";
 import {randomInt} from "../utils/RandomUtils";
 import {Loader} from "../components/Loader";
-import UpvoteDownvote from "../components/UpvoteDownvote";
-import Bookmark from "../components/Bookmark";
-import UserInfo from "../components/UserInfo";
 import Post from "../components/Post";
 import {QuestionResponse} from "../redux/types";
 

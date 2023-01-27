@@ -1,4 +1,4 @@
-import QuestionCard, {Question} from "../components/QuestionCard";
+import QuestionCard from "../components/QuestionCard";
 import {useGetFeedQuery} from "../redux/feedSlice";
 
 export default function Home() {

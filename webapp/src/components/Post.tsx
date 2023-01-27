@@ -1,4 +1,4 @@
-import {QuestionResponse, AnswerResponse, isQuestion, PostModel} from "../redux/types";
+import {isQuestion, PostModel} from "../redux/types";
 import React, {useState} from "react";
 import UpvoteDownvote from "./UpvoteDownvote";
 import Bookmark from "./Bookmark";
