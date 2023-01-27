@@ -15,11 +15,6 @@ function CommunityHeader() {
     </div>
 }
 
-interface QuestionPostHeaderProps {
-    title: string,
-    communityName: string
-}
-
 function QuestionPostHeader(question: QuestionResponse) {
     return (<div className="flex flex-col">
             <div className="flex items-center gap-1">
@@ -59,10 +54,11 @@ export default function QuestionPost() {
 
     return <div className="flex flex-auto flex-col">
         {isLoading ? <Loader/> :
-            (data && <div className="flex flex-col grow">
+            (data &&
+                (<>
                     <QuestionPostHeader {...data}/>
                     <Post {...data}/>
-                </div>
+                </>)
             )
         }
     </div>
