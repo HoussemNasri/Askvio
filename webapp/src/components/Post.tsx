@@ -17,7 +17,7 @@ enum PostType {
 export default function Post(post: PostModel) {
     const [postType, setPostType] = useState(() => isQuestion(post) ? PostType.QUESTION : PostType.ANSWER)
 
-    return (<div className="max-w-2xl flex flex-row">
+    return (<div className="max-w-3xl flex flex-row">
         <div className="flex flex-col mr-5 items-center gap-4 mt-3">
             <UpvoteDownvote voteCount={post.voteCount}/>
             <Bookmark/>
