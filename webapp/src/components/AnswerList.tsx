@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {answersAPI, useGetAnswersOnQuestionQuery} from "../redux/answerSlice";
+import {useGetAnswersOnQuestionQuery} from "../redux/answerSlice";
 import Answer from "./Answer";
 
 interface AnswersHeaderProps {
