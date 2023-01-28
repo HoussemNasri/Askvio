@@ -17,7 +17,7 @@ export default function UserInfo({userDetails, action, actionTime, isOwner = fal
                 <p>{convertToRelativeDate(actionTime)}</p>
             </div>
             <div className="flex flex-row align-top gap-2">
-                <img className="w-8 h-8" src={avatar} alt="User avatar"/>
+                <img className="w-8 h-8 rounded" src={avatar} alt="User avatar"/>
                 <p className="text-sky-700 text-sm">{firstname} {lastname}</p>
             </div>
         </div>
