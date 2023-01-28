@@ -3,12 +3,14 @@ import authReducer, {AuthState} from "../authSlice";
 import {getJwt, isAuthenticated} from "../../services/storageService";
 import {feedAPI} from "../feedSlice";
 import {questionAPI} from "../questionSlice";
+import {answersAPI} from "../answerSlice";
 
 export const store = configureStore({
         reducer: {
             auth: authReducer,
             [feedAPI.reducerPath]: feedAPI.reducer,
-            [questionAPI.reducerPath]: questionAPI.reducer
+            [questionAPI.reducerPath]: questionAPI.reducer,
+            [answersAPI.reducerPath]: answersAPI.reducer
         },
         preloadedState: {
             auth: {
@@ -17,7 +19,10 @@ export const store = configureStore({
                 jwt: (getJwt() == undefined ? '' : getJwt())!
             }
         },
-        middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(feedAPI.middleware).concat(questionAPI.middleware)
+        middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+            .concat(feedAPI.middleware)
+            .concat(questionAPI.middleware)
+            .concat(answersAPI.middleware)
     }
 )
 

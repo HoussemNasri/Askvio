@@ -52,9 +52,7 @@ export interface AnswerResponse {
     link:         string;
 }
 
-export interface AnswerResponseList {
-    answers: AnswerResponse[]
-}
+export type AnswerListResponse = AnswerResponse[]
 
 export type PostResponse = AnswerResponse | QuestionResponse
 
