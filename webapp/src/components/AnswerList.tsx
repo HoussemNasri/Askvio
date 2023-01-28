@@ -1,5 +1,4 @@
 import React from "react";
-import {AnswerResponseList} from "../redux/types";
 import {randomInt} from "../utils/RandomUtils";
 
 interface AnswersHeaderProps {

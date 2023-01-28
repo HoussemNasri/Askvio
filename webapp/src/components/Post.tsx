@@ -1,4 +1,4 @@
-import {isQuestion, PostModel} from "../redux/types";
+import {isQuestion, PostResponse} from "../redux/types";
 import React, {useState} from "react";
 import UpvoteDownvote from "./UpvoteDownvote";
 import Bookmark from "./Bookmark";
@@ -14,7 +14,7 @@ enum PostType {
     ANSWER
 }
 
-export default function Post(post: PostModel) {
+export default function Post(post: PostResponse) {
     const [postType, setPostType] = useState(() => isQuestion(post) ? PostType.QUESTION : PostType.ANSWER)
 
     return (<div className="max-w-3xl flex flex-row">

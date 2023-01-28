@@ -6,7 +6,7 @@ export interface FeedResponse {
     feed:  QuestionResponse[];
 }
 
-export interface QuestionResponse extends PostModel {
+export interface QuestionResponse {
     id:           number;
     title:        string;
     content:      string;
@@ -41,16 +41,7 @@ export interface UserResponse {
     accountCreationDate: Date;
 }
 
-export interface PostModel {
-    id: number;
-    content: string;
-    creationDate: Date;
-    voteCount: number;
-    owner: UserResponse;
-    link: string
-}
-
-export interface AnswerResponse extends PostModel {
+export interface AnswerResponse {
     id:           number;
     content:      string;
     creationDate: Date;
@@ -65,11 +56,13 @@ export interface AnswerResponseList {
     answers: AnswerResponse[]
 }
 
+export type PostResponse = AnswerResponse | QuestionResponse
+
 // Type guards to workaround not being able to use instanceof on interfaces in Typescript
-export function isQuestion(post: PostModel) {
+export function isQuestion(post: PostResponse) {
     return 'community' in post
 }
 
-export function isAnswer(post: PostModel) {
+export function isAnswer(post: PostResponse) {
     return 'questionId' in post
 }
