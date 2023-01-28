@@ -1,7 +1,6 @@
 import React, {useEffect} from "react";
-import {randomInt} from "../utils/RandomUtils";
-import {useGetAnswersOnQuestionQuery} from "../redux/answerSlice";
-import {AnswerListResponse} from "../redux/types";
+import {answersAPI, useGetAnswersOnQuestionQuery} from "../redux/answerSlice";
+import Answer from "./Answer";
 
 interface AnswersHeaderProps {
     answersCount: number
@@ -37,8 +36,16 @@ export default function AnswerList({questionId}: AnswersProps) {
     }
 
     return <>
-        {data && <div id="answers">
+        {data && <div id="answers" className="flex flex-col gap-4 max-w-3xl">
             <AnswersHeader answersCount={data.length}/>
+            {
+                data.map(answer => {
+                    return <>
+                        <Answer {...answer}/>
+                        <hr id="answers-separator" className="mt-2"/>
+                    </>
+                })
+            }
         </div>}
     </>
 }
