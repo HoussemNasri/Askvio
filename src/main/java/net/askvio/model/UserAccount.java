@@ -25,7 +25,7 @@ import net.askvio.services.avatar.AvatarType;
 @Getter
 public class UserAccount {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank(message = "Firstname is required")
     private String firstname;
