@@ -17,7 +17,9 @@ public class UserAccountService {
     private final UserAccountRepository userAccountRepository;
 
     public Optional<UserAccount> getPrincipalUserAccount(Authentication authentication) {
-        Objects.requireNonNull(authentication);
+        if (authentication == null) {
+            return Optional.empty();
+        }
 
         UserDetails principal = (UserDetails) authentication.getPrincipal();
         return Optional.ofNullable(principal)
