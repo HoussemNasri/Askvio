@@ -38,8 +38,12 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         }
 
         String jwt = authorizationHeader.substring(BEARER_PREFIX.length());
-        String email = jwtService.extractEmailFromJWT(jwt);
+        if (!jwtService.validateJwtToken(jwt)) {
+            filterChain.doFilter(request, response);
+            return;
+        }
 
+        String email = jwtService.extractEmailFromJWT(jwt);
         if (email == null) {
             filterChain.doFilter(request, response);
             return;
@@ -47,10 +51,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-        if (!jwtService.validateJwtToken(jwt)) {
-            filterChain.doFilter(request, response);
-            return;
-        }
         var authenticationToken = new UsernamePasswordAuthenticationToken(
                 userDetails, null, userDetails.getAuthorities()
         );
