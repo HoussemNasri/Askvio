@@ -6,6 +6,7 @@ import {Loader} from "../components/Loader";
 import Post from "../components/Post";
 import {QuestionResponse} from "../redux/types";
 import AnswerList from "../components/AnswerList";
+import PostAnswer from "../components/PostAnswer";
 
 function CommunityHeader() {
     return <div className="flex flex-row p-2 bg-gray-300 fixed top-[72px] left-60 right-0 items-center">
@@ -62,6 +63,10 @@ export default function QuestionPost() {
                     {
                         data.answersCount > 0 && <AnswerList questionId={data.id}/>
                     }
+                    <div className="mt-5 flex flex-col gap-4">
+                        <p className="text-xl text-gray-800">Your Answer</p>
+                        <PostAnswer questionId={data.id}/>
+                    </div>
                 </>)
             )
         }
