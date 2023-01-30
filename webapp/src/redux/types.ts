@@ -64,3 +64,8 @@ export function isQuestion(post: PostResponse) {
 export function isAnswer(post: PostResponse) {
     return 'questionId' in post
 }
+
+export interface PostAnswerRequest {
+    questionId: number,
+    content: string
+}

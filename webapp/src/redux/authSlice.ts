@@ -59,3 +59,5 @@ export const authSlice = createSlice({
 export default authSlice.reducer
 
 export const getAuthState = (state: RootState) => state.auth
+export const selectAuth = (state: RootState) => state.auth;
+export const selectJWT = (state: RootState) => selectAuth(state).jwt;
