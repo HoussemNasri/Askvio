@@ -56,7 +56,7 @@ public class AnswersService {
     }
 
     private UserResponse lookupOwner(Answer answer) {
-        return userAccountRepository.findUserResponseDTOById(answer.getAnswererAccount().getId()).orElseThrow();
+        return userAccountRepository.findUserResponseDTOById(answer.getOwner().getId()).orElseThrow();
     }
 
     public AnswerResponse mapAnswerToAnswerResponse(Answer answer) {

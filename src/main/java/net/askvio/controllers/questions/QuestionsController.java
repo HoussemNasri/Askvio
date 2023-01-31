@@ -3,6 +3,7 @@ package net.askvio.controllers.questions;
 import lombok.AllArgsConstructor;
 import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
+import net.askvio.exceptions.NotImplementedException;
 import net.askvio.services.questions.QuestionService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -32,5 +33,25 @@ public class QuestionsController {
         return questionService.getQuestionById(id)
                               .map(ResponseEntity::ok)
                               .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PostMapping("/{questionId}/upvote")
+    public ResponseEntity<?> upvote(@PathVariable Long questionId, Authentication authentication) {
+        throw new NotImplementedException();
+    }
+
+    @PostMapping("/{questionId}/downvote")
+    public ResponseEntity<?> downvote(@PathVariable Long questionId, Authentication authentication) {
+        throw new NotImplementedException();
+    }
+
+    @PostMapping("/{questionId}/upvote/undo")
+    public ResponseEntity<?> undoUpvote(@PathVariable Long questionId, Authentication authentication) {
+        throw new NotImplementedException();
+    }
+
+    @PostMapping("/{questionId}/downvite/undo")
+    public ResponseEntity<?> undoDownvote(@PathVariable Long questionId, Authentication authentication) {
+        throw new NotImplementedException();
     }
 }

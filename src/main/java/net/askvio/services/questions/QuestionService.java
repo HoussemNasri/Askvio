@@ -1,7 +1,6 @@
 package net.askvio.services.questions;
 
 import java.time.Instant;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -48,7 +47,7 @@ public class QuestionService {
         }
 
         Question submittedQuestion = new Question(null, request.title(),
-                request.content(), Instant.now(), 0, principalAccount.get(), community.get(), Collections.emptyList());
+                request.content(), Instant.now(), 0, principalAccount.get(), community.get());
         submittedQuestion = questionRepository.save(submittedQuestion);
 
         return Optional.of(new QuestionResponse(
@@ -73,7 +72,7 @@ public class QuestionService {
     }
 
     private UserResponse lookupOwner(Question question) {
-        return userAccountRepository.findUserResponseDTOById(question.getAskerAccount().getId()).orElseThrow();
+        return userAccountRepository.findUserResponseDTOById(question.getOwner().getId()).orElseThrow();
     }
 
     public QuestionResponse mapQuestionToQuestionResponse(Question question) {
