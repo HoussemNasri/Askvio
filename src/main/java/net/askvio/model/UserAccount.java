@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
@@ -45,6 +46,9 @@ public class UserAccount {
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Community> joinedCommunities;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "userAccount")
+    private Set<Vote> votes;
 
     @Override
     public boolean equals(Object o) {
