@@ -11,6 +11,7 @@ import net.askvio.controllers.answers.dto.PostAnswerRequest;
 import net.askvio.database.AnswerRepository;
 import net.askvio.database.QuestionRepository;
 import net.askvio.database.UserAccountRepository;
+import net.askvio.database.VoteRepository;
 import net.askvio.model.Answer;
 import net.askvio.model.Question;
 import net.askvio.model.UserAccount;
@@ -26,6 +27,7 @@ public class AnswersService {
     private final AnswerRepository answerRepository;
     private final QuestionRepository questionRepository;
     private final UserAccountService userAccountService;
+    private final VoteRepository voteRepository;
     @Value("${react-app.url}")
     private String reactAppUrl;
 
@@ -48,7 +50,7 @@ public class AnswersService {
             return Optional.empty();
         }
 
-        Answer answer = new Answer(null, answerRequest.content(), Instant.now(), 0, false,
+        Answer answer = new Answer(null, answerRequest.content(), Instant.now(), false,
                 principalAccountOpt.get(), questionOpt.get());
         answer = answerRepository.save(answer);
 
@@ -64,7 +66,7 @@ public class AnswersService {
                 answer.getId(),
                 answer.getContent(),
                 answer.getCreationDate(),
-                answer.getVoteCount(),
+                voteRepository.getPostTotalVote(answer.getId()),
                 lookupOwner(answer),
                 answer.getQuestion().getId(),
                 answer.isAccepted(),

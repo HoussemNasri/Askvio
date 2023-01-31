@@ -25,8 +25,8 @@ public class Question extends Post {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "question")
     private List<Answer> answers;
 
-    public Question(Long id, String title, String content, Instant creationDate, Integer voteCount, UserAccount owner, Community community) {
-        super(id, owner, creationDate, content, voteCount);
+    public Question(Long id, String title, String content, Instant creationDate, UserAccount owner, Community community) {
+        super(id, owner, creationDate, content);
         this.title = title;
         this.askedAtCommunity = community;
     }

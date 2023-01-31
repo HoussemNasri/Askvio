@@ -13,6 +13,7 @@ import net.askvio.database.AnswerRepository;
 import net.askvio.database.CommunityRepository;
 import net.askvio.database.QuestionRepository;
 import net.askvio.database.UserAccountRepository;
+import net.askvio.database.VoteRepository;
 import net.askvio.model.Community;
 import net.askvio.model.Question;
 import net.askvio.model.UserAccount;
@@ -31,6 +32,7 @@ public class QuestionService {
     private final QuestionRepository questionRepository;
     private final CommunityRepository communityRepository;
     private final AnswerRepository answerRepository;
+    private final VoteRepository voteRepository;
 
     @Value("${react-app.url}")
     private String reactAppUrl;
@@ -47,7 +49,7 @@ public class QuestionService {
         }
 
         Question submittedQuestion = new Question(null, request.title(),
-                request.content(), Instant.now(), 0, principalAccount.get(), community.get());
+                request.content(), Instant.now(), principalAccount.get(), community.get());
         submittedQuestion = questionRepository.save(submittedQuestion);
 
         return Optional.of(new QuestionResponse(
@@ -81,7 +83,7 @@ public class QuestionService {
                 question.getTitle(),
                 question.getContent(),
                 question.getCreationDate(),
-                question.getVoteCount(),
+                voteRepository.getPostTotalVote(question.getId()),
                 answerRepository.countByQuestion(question),
                 lookupOwner(question),
                 lookupCommunity(question),

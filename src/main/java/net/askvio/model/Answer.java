@@ -17,8 +17,8 @@ public class Answer extends Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private Question question;
 
-    public Answer(Long id, String content, Instant creationDate, Integer voteCount, Boolean isAccepted, UserAccount owner, Question question) {
-        super(id, owner, creationDate, content, voteCount);
+    public Answer(Long id, String content, Instant creationDate, Boolean isAccepted, UserAccount owner, Question question) {
+        super(id, owner, creationDate, content);
         this.isAccepted = isAccepted;
         this.question = question;
     }

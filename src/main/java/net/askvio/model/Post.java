@@ -32,6 +32,4 @@ public class Post {
     private Instant creationDate;
     @Column(length = 30_000)
     private String content;
-
-    private Integer voteCount;
 }
