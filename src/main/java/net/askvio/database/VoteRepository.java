@@ -2,8 +2,6 @@ package net.askvio.database;
 
 import java.util.Optional;
 
-import com.fasterxml.jackson.annotation.OptBoolean;
-import net.askvio.model.UserAccount;
 import net.askvio.model.Vote;
 import net.askvio.model.VoteId;
 import net.askvio.model.VoteType;
