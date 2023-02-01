@@ -18,6 +18,7 @@ import net.askvio.model.Community;
 import net.askvio.model.Question;
 import net.askvio.model.UserAccount;
 import net.askvio.services.account.UserAccountService;
+import net.askvio.services.votes.VoteService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
@@ -33,6 +34,7 @@ public class QuestionService {
     private final CommunityRepository communityRepository;
     private final AnswerRepository answerRepository;
     private final VoteRepository voteRepository;
+    private final VoteService voteService;
 
     @Value("${react-app.url}")
     private String reactAppUrl;
@@ -57,10 +59,12 @@ public class QuestionService {
                 submittedQuestion.getTitle(),
                 submittedQuestion.getContent(),
                 submittedQuestion.getCreationDate(),
-                0,0,
+                0, 0,
                 userAccountRepository.findUserResponseDTOByEmail(principalAccount.get().getEmail()).orElseThrow(),
                 communityRepository.findCommunityById(request.communityId()).orElseThrow(),
-                generateQuestionLink(submittedQuestion.getId(), submittedQuestion.getTitle())
+                generateQuestionLink(submittedQuestion.getId(), submittedQuestion.getTitle()),
+                false,
+                false
         ));
     }
 
@@ -89,7 +93,9 @@ public class QuestionService {
                 lookupCommunity(question),
                 // TODO: Optimization - Store question link in the database so we don't generate the url
                 //    everytime the question is accessed
-                generateQuestionLink(question.getId(), question.getTitle()));
+                generateQuestionLink(question.getId(), question.getTitle()),
+                voteService.isPostDownvotedByPrincipalUser(question),
+                voteService.isPostUpvotedByPrincipalUser(question));
     }
 
     public String generateQuestionLink(Long questionId, String questionTitle) {

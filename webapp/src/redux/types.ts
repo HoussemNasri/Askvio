@@ -16,6 +16,8 @@ export interface QuestionResponse {
     owner:        UserResponse;
     community:    CommunityResponse;
     link:         string;
+    downvoted:    boolean;
+    upvoted:      boolean;
 }
 
 export interface CommunityResponse {
@@ -50,6 +52,8 @@ export interface AnswerResponse {
     questionId:   number;
     isAccepted:   boolean;
     link:         string;
+    downvoted:    boolean;
+    upvoted:      boolean;
 }
 
 export type AnswerListResponse = AnswerResponse[]

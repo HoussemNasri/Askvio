@@ -19,7 +19,7 @@ export default function Post(post: PostResponse) {
 
     return (<div className="max-w-3xl w-full flex flex-row">
         <div className="flex flex-col mr-5 items-center gap-4 mt-3">
-            <UpvoteDownvote voteCount={post.voteCount}/>
+            <UpvoteDownvote voteCount={post.voteCount} downvoted={post.downvoted} upvoted={post.upvoted}/>
             <Bookmark/>
         </div>
         <div className="w-full">
