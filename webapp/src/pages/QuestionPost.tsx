@@ -1,12 +1,13 @@
 import {useParams} from "react-router-dom";
 import React, {useEffect} from "react";
-import {useGetQuestionByIdQuery} from "../redux/questionSlice";
+import {useDownvoteMutation, useGetQuestionByIdQuery, useUpvoteMutation} from "../redux/questionSlice";
 import {randomInt} from "../utils/RandomUtils";
 import {Loader} from "../components/Loader";
 import Post from "../components/Post";
 import {QuestionResponse} from "../redux/types";
 import AnswerList from "../components/AnswerList";
 import PostAnswer from "../components/PostAnswer";
+import {useAppDispatch} from "../redux/app/hooks";
 
 function CommunityHeader() {
     return <div className="flex flex-row p-2 bg-gray-300 fixed top-[72px] left-60 right-0 items-center">
@@ -48,7 +49,35 @@ function QuestionPostHeader(question: QuestionResponse) {
 
 export default function QuestionPost() {
     const params = useParams()
-    const {error, isLoading, data} = useGetQuestionByIdQuery(Number(params.questionId))
+    const {error, isLoading, data, refetch: refetchQuestion} = useGetQuestionByIdQuery(Number(params.questionId))
+    const [upvote, {isSuccess: isUpvoteSucceed, isLoading: upvoteRequestInProgress}] = useUpvoteMutation()
+    const [downvote, {isSuccess: isDownvoteSucceed, isLoading: downvoteRequestInProgress}] = useDownvoteMutation()
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        if (isUpvoteSucceed) {
+            refetchQuestion()
+        }
+    }, [isUpvoteSucceed])
+
+    useEffect(() => {
+        if (isDownvoteSucceed) {
+            refetchQuestion()
+        }
+    }, [isDownvoteSucceed])
+
+
+    function onUpvote() {
+        if (params.questionId && !upvoteRequestInProgress && !downvoteRequestInProgress) {
+            upvote(Number(params.questionId))
+        }
+    }
+
+    function onDownvote() {
+        if (params.questionId && !upvoteRequestInProgress && !downvoteRequestInProgress) {
+            downvote(Number(params.questionId))
+        }
+    }
 
     useEffect(() => {
         console.log(data)
@@ -59,7 +88,7 @@ export default function QuestionPost() {
             (data &&
                 (<>
                     <QuestionPostHeader {...data}/>
-                    <Post {...data}/>
+                    <Post post={data} onUpvote={onUpvote} onDownvote={onDownvote}/>
                     {
                         data.answersCount > 0 && <AnswerList questionId={data.id}/>
                     }

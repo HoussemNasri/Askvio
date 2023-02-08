@@ -5,6 +5,7 @@ import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
 import net.askvio.exceptions.NotImplementedException;
 import net.askvio.services.questions.QuestionService;
+import net.askvio.services.votes.VoteService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class QuestionsController {
 
     private final QuestionService questionService;
+    private final VoteService voteService;
 
     @PostMapping
     public ResponseEntity<QuestionResponse> submitQuestion(@RequestBody SubmitQuestionRequest submitQuestionRequest, Authentication authentication) {
@@ -37,12 +39,22 @@ public class QuestionsController {
 
     @PostMapping("/{questionId}/upvote")
     public ResponseEntity<?> upvote(@PathVariable Long questionId, Authentication authentication) {
-        throw new NotImplementedException();
+        boolean succeed = voteService.upvote(questionId);
+        if (succeed) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PostMapping("/{questionId}/downvote")
     public ResponseEntity<?> downvote(@PathVariable Long questionId, Authentication authentication) {
-        throw new NotImplementedException();
+        boolean succeed = voteService.downvote(questionId);
+        if (succeed) {
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.badRequest().build();
+        }
     }
 
     @PostMapping("/{questionId}/upvote/undo")

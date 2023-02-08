@@ -5,8 +5,9 @@ import Bookmark from "./Bookmark";
 import UserInfo from "./UserInfo";
 
 interface PostProps {
-    id: number;
-    content: string
+    post: PostResponse,
+    onUpvote: () => void,
+    onDownvote: () => void
 }
 
 enum PostType {
@@ -14,12 +15,12 @@ enum PostType {
     ANSWER
 }
 
-export default function Post(post: PostResponse) {
+export default function Post({post, onUpvote, onDownvote}: PostProps) {
     const [postType, setPostType] = useState(() => isQuestion(post) ? PostType.QUESTION : PostType.ANSWER)
 
     return (<div className="max-w-3xl w-full flex flex-row">
         <div className="flex flex-col mr-5 items-center gap-4 mt-3">
-            <UpvoteDownvote voteCount={post.voteCount} downvoted={post.downvoted} upvoted={post.upvoted}/>
+            <UpvoteDownvote voteCount={post.voteCount} downvoted={post.downvoted} upvoted={post.upvoted} onUpvote={onUpvote} onDownvote={onDownvote}/>
             <Bookmark/>
         </div>
         <div className="w-full">

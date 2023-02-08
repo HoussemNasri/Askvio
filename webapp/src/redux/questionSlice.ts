@@ -13,10 +13,58 @@ export const questionAPI = createApi({
         }
     }),
     endpoints: (builder) => ({
-        getQuestionById: builder.query<QuestionResponse, number>({query: (questionId) => `/${questionId}`})
+        getQuestionById: builder.query<QuestionResponse, number>({query: (questionId) => `/${questionId}`}),
+        upvote: builder.mutation<void, number>({
+            query: (questionId) => ({
+                url: `/${questionId}/upvote`,
+                method: 'POST'
+            }),
+            async onQueryStarted(questionId, {queryFulfilled, dispatch}) {
+                const patchResult = dispatch(questionAPI.util.updateQueryData('getQuestionById', questionId, (question) => {
+                    if (question.downvoted) {
+                        question.voteCount += 2
+                    } else if (!question.upvoted && !question.downvoted) {
+                        question.voteCount += 1
+                    }
+                    question.upvoted = true
+                    question.downvoted = false
+                }))
+
+                try {
+                    await queryFulfilled
+                } catch(e) {
+                    patchResult.undo()
+                }
+            }
+        }),
+        downvote: builder.mutation<void, number>({
+            query: (questionId) => ({
+                url: `/${questionId}/downvote`,
+                method: 'POST'
+            }),
+            async onQueryStarted(questionId, {queryFulfilled, dispatch}) {
+                const patchResult = dispatch(questionAPI.util.updateQueryData('getQuestionById', questionId, (question) => {
+                    if (question.upvoted) {
+                        question.voteCount -= 2
+                    } else if (!question.upvoted && !question.downvoted) {
+                        question.voteCount -= 1
+                    }
+                    question.upvoted = false
+                    question.downvoted = true
+                }))
+
+                try {
+                    await queryFulfilled
+                } catch {
+                    patchResult.undo()
+                }
+            }
+        })
     })
 })
 
 export const {
-    useGetQuestionByIdQuery
+    useGetQuestionByIdQuery,
+    useUpvoteMutation,
+    useDownvoteMutation
 } = questionAPI
