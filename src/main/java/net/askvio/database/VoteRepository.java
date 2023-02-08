@@ -6,6 +6,7 @@ import net.askvio.model.Vote;
 import net.askvio.model.VoteId;
 import net.askvio.model.VoteType;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
@@ -21,4 +22,8 @@ public interface VoteRepository extends JpaRepository<Vote, VoteId> {
 
     @Query("SELECT v.voteType FROM Vote v WHERE v.post.id = :postId AND v.userAccount.id = :userId")
     Optional<VoteType> getUserVoteOnPost(@Param("userId") Long userId, @Param("postId") Long postId);
+
+    @Modifying
+    @Query("DELETE FROM Vote v WHERE v.userAccount.id = :userId AND v.post.id = :postId")
+    void deleteUserVoteOnPost(@Param("userId") Long userId, @Param("postId") Long postId);
 }

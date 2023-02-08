@@ -20,4 +20,17 @@ public class Vote {
     @MapsId("postId")
     @ManyToOne(fetch = FetchType.LAZY)
     private Post post;
-    @Jo
+    @JoinColumn(name = "user_id")
+    @MapsId("userAccountId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private UserAccount userAccount;
+
+    private VoteType voteType;
+
+    public Vote(Post post, UserAccount userAccount, VoteType voteType) {
+        this.post = post;
+        this.userAccount = userAccount;
+        this.voteType = voteType;
+        this.id = new VoteId(post.getId(), userAccount.getId());
+    }
+}
