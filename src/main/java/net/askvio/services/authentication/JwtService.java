@@ -18,7 +18,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class JwtService {
-    private static final Duration TOKEN_DURATION = Duration.ofHours(24);
+    private static final Duration TOKEN_DURATION = Duration.ofDays(30);
     @Value("${app.jwt.secret}")
     private String SECRET_KEY;
     public String generateJwtToken(UserDetails user) {
