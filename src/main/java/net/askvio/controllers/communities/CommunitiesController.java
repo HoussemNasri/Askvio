@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CommunitiesController {
     private final CommunityService communityService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<CommunityResponse> getCommunity(@PathVariable Long id) {
-        return communityService.getCommunity(id)
+    @GetMapping("/{name}")
+    public ResponseEntity<CommunityResponse> getCommunityByName(@PathVariable String name) {
+        return communityService.getCommunityByName(name)
                                .map(ResponseEntity::ok)
                                .orElse(ResponseEntity.notFound().build());
     }

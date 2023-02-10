@@ -12,6 +12,8 @@ import org.springframework.data.jpa.repository.Query;
 public interface CommunityRepository extends JpaRepository<Community, Long> {
     Optional<CommunityResponse> findCommunityById(Long id);
 
+    Optional<CommunityResponse> findCommunitiesByName(String name);
+
     List<CommunityResponse> findCommunityResponseBy();
 
     @Query("SELECT CASE WHEN (count(c) > 0) THEN true ELSE false END FROM Community c JOIN c.members m WHERE c.id = :communityId AND :user = m")

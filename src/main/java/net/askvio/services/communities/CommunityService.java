@@ -25,10 +25,9 @@ public class CommunityService {
     private final UserAccountRepository userAccountRepository;
     private final AuthenticationManager authenticationManager;
 
-    public Optional<CommunityResponse> getCommunity(Long id) {
-        Objects.requireNonNull(id, "Cannot retrieve community information with a null id");
-        // TODO: check weather the current user can read the given community information .e.g. Private Community
-        return communityRepository.findCommunityById(id);
+    public Optional<CommunityResponse> getCommunityByName(String name) {
+        Objects.requireNonNull(name);
+        return communityRepository.findCommunitiesByName(name);
     }
 
     public void join(Long communityId, Authentication authentication) {
