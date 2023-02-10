@@ -8,6 +8,7 @@ import {PrivateRoute} from "./router/PrivateRoute";
 import Layout from "./components/Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 import QuestionPage from "./pages/QuestionPage";
+import CommunityPage from "./pages/CommunityPage";
 
 function App() {
     const dispatch = useAppDispatch()
@@ -19,6 +20,7 @@ function App() {
                         <Routes>
                             <Route path='/' element={<HomePage/>}/>
                             <Route path='/questions/:questionId/*' element={<QuestionPage/>}></Route>
+                            <Route path='/communities/:communityName' element={<CommunityPage/>}></Route>
                             <Route path='*' element={<NotFoundPage/>} />
                         </Routes>
                     </Layout>
