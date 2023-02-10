@@ -11,7 +11,7 @@ import net.askvio.database.CommunityRepository;
 import net.askvio.database.UserAccountRepository;
 import net.askvio.model.Community;
 import net.askvio.model.UserAccount;
-import org.springframework.security.authentication.AuthenticationManager;
+import net.askvio.services.account.UserAccountService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -23,7 +23,8 @@ public class CommunityService {
 
     private final CommunityRepository communityRepository;
     private final UserAccountRepository userAccountRepository;
-    private final AuthenticationManager authenticationManager;
+    private final UserAccountService userAccountService;
+
 
     public Optional<CommunityResponse> getCommunityByName(String name) {
         Objects.requireNonNull(name);
@@ -31,31 +32,36 @@ public class CommunityService {
     }
 
     public void join(Long communityId, Authentication authentication) {
-        communityRepository.findById(communityId).ifPresentOrElse(community -> {
-            UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-            Optional<UserAccount> userAccount = userAccountRepository.findByEmail(userDetails.getUsername());
-            userAccount.ifPresent(account -> {
-                community.getMembers().add(account);
-                communityRepository.save(community);
-            });
-        }, () -> log.error("Community not found"));
+        Optional<Community> communityOpt = communityRepository.findById(communityId);
+        if (communityOpt.isEmpty()) {
+            log.info("Unable to join community. Community doesn't exist");
+        }
+
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Optional<UserAccount> userAccountOpt = userAccountRepository.findByEmail(userDetails.getUsername());
+        if (userAccountOpt.isEmpty()) {
+            log.info("Unable to join community. Associated user account is invalid");
+        }
+
+        Community community = communityOpt.get();
+        UserAccount account = userAccountOpt.get();
+
+        community.getMembers().add(account);
+        communityRepository.save(community);
     }
 
     public List<CommunityResponse> getCommunities() {
         return communityRepository.findCommunityResponseBy();
     }
 
-    public CommunityResponse mapCommunityToCommunityResponse(Community community) {
-        return communityRepository.findCommunityById(community.getId()).orElseThrow();
-    }
-
     public boolean isCurrentUserMemberOfCommunity(Long communityId, Authentication authentication) {
-        log.info("Community Id: {}", communityId);
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        Optional<UserAccount> userAccount = userAccountRepository.findByEmail(userDetails.getUsername());
-        return userAccount.map(account -> {
-            log.info("Username: {}", account.getUsername());
-            return communityRepository.isUserMemberOfCommunity(account, communityId);
-        }).orElseThrow();
+        log.info("Checking if principal user is member of community '{}'...", communityId);
+
+        Optional<UserAccount> principalOpt = userAccountService.getPrincipalUserAccount();
+        if (principalOpt.isEmpty()) {
+            log.info("Unable to check if principal user if member of community '{}'. Request is not authenticated", communityId);
+        }
+
+        return communityRepository.isUserMemberOfCommunity(principalOpt.get(), communityId);
     }
 }
