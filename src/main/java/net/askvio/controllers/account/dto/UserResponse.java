@@ -4,6 +4,9 @@ import java.time.Instant;
 
 import org.springframework.beans.factory.annotation.Value;
 
+/**
+ * A Projection for the {@link net.askvio.model.UserAccount} entity
+ * */
 public interface UserResponse {
     @Value("#{target.id}")
     Long getAccountId();
