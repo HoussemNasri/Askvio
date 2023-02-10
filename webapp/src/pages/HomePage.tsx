@@ -2,7 +2,7 @@ import QuestionCard from "../components/QuestionCard";
 import {useGetFeedQuery} from "../redux/feedSlice";
 import {useReducer} from "react";
 
-export default function Home() {
+export default function HomePage() {
     const {data, error, isLoading, refetch} = useGetFeedQuery()
 
     if (isLoading) {

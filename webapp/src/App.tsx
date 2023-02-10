@@ -1,13 +1,13 @@
 import React from 'react';
-import Login from "./pages/Login";
+import LoginPage from "./pages/LoginPage";
 import {BrowserRouter as Router, Link, Route, Routes} from "react-router-dom";
-import Home from "./pages/Home";
-import ExploreCommunities from "./pages/ExploreCommunities";
+import HomePage from "./pages/HomePage";
+import ExploreCommunitiesPage from "./pages/ExploreCommunitiesPage";
 import {useAppDispatch} from "./redux/app/hooks";
 import {PrivateRoute} from "./router/PrivateRoute";
 import Layout from "./components/Layout";
-import Page404 from "./pages/Page404";
-import QuestionPost from "./pages/QuestionPost";
+import NotFoundPage from "./pages/NotFoundPage";
+import QuestionPage from "./pages/QuestionPage";
 
 function App() {
     const dispatch = useAppDispatch()
@@ -17,9 +17,9 @@ function App() {
                 <Router>
                     <Layout>
                         <Routes>
-                            <Route path='/' element={<Home/>}/>
-                            <Route path='/questions/:questionId/*' element={<QuestionPost/>}></Route>
-                            <Route path='*' element={<Page404/>} />
+                            <Route path='/' element={<HomePage/>}/>
+                            <Route path='/questions/:questionId/*' element={<QuestionPage/>}></Route>
+                            <Route path='*' element={<NotFoundPage/>} />
                         </Routes>
                     </Layout>
                 </Router>

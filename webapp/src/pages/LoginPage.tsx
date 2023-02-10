@@ -21,7 +21,7 @@ import {getAuthState, loginAsync} from "../redux/authSlice";
 
 const theme = createTheme();
 
-export default function Login() {
+export default function LoginPage() {
     /*const navigate = useNavigate()
     const dispatch = useAppDispatch()
     const authState = useAppSelector(getAuthState)

@@ -47,7 +47,7 @@ function QuestionPostHeader(question: QuestionResponse) {
     )
 }
 
-export default function QuestionPost() {
+export default function QuestionPage() {
     const params = useParams()
     const {error, isLoading, data, refetch: refetchQuestion} = useGetQuestionByIdQuery(Number(params.questionId))
     const [upvote, {isSuccess: isUpvoteSucceed, isLoading: upvoteRequestInProgress}] = useUpvoteMutation()

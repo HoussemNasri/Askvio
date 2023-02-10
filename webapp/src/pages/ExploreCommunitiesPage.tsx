@@ -13,7 +13,7 @@ interface TabPanelProps {
     value: number;
 }
 
-export default function ExploreCommunities() {
+export default function ExploreCommunitiesPage() {
     /*const [category, setCategory] = useState(1)
     const [communities, setCommunities] = useState(new Array<CommunityResponse>())
 
