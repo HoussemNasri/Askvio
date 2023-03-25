@@ -24,7 +24,7 @@ export default function CommunityPage() {
 
     return (
         <div>
-            {communityData && <div className="flex flex-col w-[80%] h-80 bg-amber-300 items-center justify-center">
+            {communityData && <div className="flex flex-col w-100 h-80 bg-amber-300 items-center justify-center">
                 <p className="text-4xl font-bold text-stone-900">{communityData.displayName}</p>
                 <p className="text-sm font-medium text-stone-800">{`v/${communityData.name}`}</p>
             </div>}
