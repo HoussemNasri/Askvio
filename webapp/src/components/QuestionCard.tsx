@@ -77,7 +77,7 @@ export default function QuestionCard({
                      src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
                      alt="Rounded avatar"/>
                 <p className="text-sm font-bold">
-                    v/{community.name}
+                    c/{community.name}
                 </p>
                 <p>·</p>
                 <p className="text-gray-500 text-sm font-normal">

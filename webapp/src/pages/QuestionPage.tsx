@@ -22,7 +22,7 @@ function QuestionPostHeader(question: QuestionResponse) {
     return (<div className="flex flex-col">
             <div className="flex items-center gap-1">
                 <p className="text-xs font-bold text-sky-600 mt-1">
-                    v/{question.community.name}
+                    c/{question.community.name}
                 </p>
             </div>
             <h5 className="mb-2 text-3xl font-semibold text-gray-800 tracking-tight text-gray-900 dark:text-white">
