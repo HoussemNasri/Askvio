@@ -59,6 +59,11 @@ export const questionAPI = createApi({
                     patchResult.undo()
                 }
             }
+        }),
+        getQuestionsAskedAtCommunity: builder.query<QuestionResponse[], string>({
+            query: (community: string) => ({
+                url: `/c/${community}`
+            })
         })
     })
 })
@@ -66,5 +71,6 @@ export const questionAPI = createApi({
 export const {
     useGetQuestionByIdQuery,
     useUpvoteMutation,
-    useDownvoteMutation
+    useDownvoteMutation,
+    useGetQuestionsAskedAtCommunityQuery
 } = questionAPI

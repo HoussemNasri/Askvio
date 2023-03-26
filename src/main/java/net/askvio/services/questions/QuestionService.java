@@ -1,6 +1,7 @@
 package net.askvio.services.questions;
 
 import java.time.Instant;
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -20,6 +21,7 @@ import net.askvio.model.UserAccount;
 import net.askvio.services.account.UserAccountService;
 import net.askvio.services.votes.VoteService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
@@ -96,6 +98,13 @@ public class QuestionService {
                 generateQuestionLink(question.getAskedAtCommunity().getName(), question.getId(), question.getTitle()),
                 voteService.isPostDownvotedByPrincipalUser(question),
                 voteService.isPostUpvotedByPrincipalUser(question));
+    }
+
+    public List<QuestionResponse> getQuestionsAskedAtCommunity(String community) {
+        // TODO: Remove the limit on the number of returned questions. I don't know when though...
+        return questionRepository.getQuestionsAskedAtCommunity(community, Pageable.ofSize(30))
+                       .stream().map(this::mapQuestionToQuestionResponse)
+                       .toList();
     }
 
     public String generateQuestionLink(String communityName, Long questionId, String questionTitle) {

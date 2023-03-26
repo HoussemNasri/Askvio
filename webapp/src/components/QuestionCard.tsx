@@ -1,4 +1,4 @@
-import {QuestionResponse} from "../redux/types";
+import {CommunityResponse, QuestionResponse} from "../redux/types";
 import {convertToRelativeDate} from "../utils/DateUtils";
 import {BsEye} from "react-icons/bs";
 import {BiComment} from "react-icons/bi";
@@ -59,27 +59,33 @@ function extractRoutePath(url: string) {
     return new URL(url).pathname
 }
 
-export default function QuestionCard({
-                                         title,
-                                         content,
-                                         community,
-                                         owner,
-                                         creationDate,
-                                         answersCount,
-                                         voteCount,
-                                         link
-                                     }: QuestionResponse) {
+export interface QuestionCardProps {
+    question: QuestionResponse;
+    shouldHideCommunityLabel?: boolean;
+
+}
+
+function CommunityLabel(community: CommunityResponse) {
+    return <div className="flex flex-row gap-1">
+        <img className="w-8 h-8 rounded-full"
+             src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
+             alt="Rounded avatar"/>
+        <p className="text-sm font-bold">
+            c/{community.name}
+        </p>
+        <p>·</p>
+    </div>
+}
+
+export default function QuestionCard({question, shouldHideCommunityLabel = false}: QuestionCardProps) {
+    const {title, content, community, owner, creationDate, answersCount, voteCount, link} = question
+
     return (
         <Link to={extractRoutePath(link)}
-              className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+              className="block p-5 bg-white border border-gray-200 rounded-lg shadow-md hover:bg-gray-100 dark:bg-gray-800
+              dark:border-gray-700 dark:hover:bg-gray-700 w-full">
             <div className="flex flex-row items-center gap-1">
-                <img className="w-8 h-8 rounded-full"
-                     src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
-                     alt="Rounded avatar"/>
-                <p className="text-sm font-bold">
-                    c/{community.name}
-                </p>
-                <p>·</p>
+                {!shouldHideCommunityLabel && <CommunityLabel {...community}/>}
                 <p className="text-gray-500 text-sm font-normal">
                     Posted by u/{owner.username} {convertToRelativeDate(creationDate)}
                 </p>

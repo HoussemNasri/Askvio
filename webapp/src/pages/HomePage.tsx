@@ -1,6 +1,5 @@
 import QuestionCard from "../components/QuestionCard";
 import {useGetFeedQuery} from "../redux/feedSlice";
-import {useReducer} from "react";
 
 export default function HomePage() {
     const {data, error, isLoading, refetch} = useGetFeedQuery()
@@ -23,7 +22,7 @@ export default function HomePage() {
                 data && <div className="flex flex-col gap-5">
                     {
                         data?.feed.map(question => {
-                            return <QuestionCard {...question}/>
+                            return <QuestionCard question={question}/>
                         })
                     }
                 </div>

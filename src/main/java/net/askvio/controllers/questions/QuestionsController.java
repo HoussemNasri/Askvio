@@ -1,5 +1,7 @@
 package net.askvio.controllers.questions;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import net.askvio.controllers.questions.dto.QuestionResponse;
 import net.askvio.controllers.questions.dto.SubmitQuestionRequest;
@@ -65,5 +67,10 @@ public class QuestionsController {
     @PostMapping("/{questionId}/downvite/undo")
     public ResponseEntity<?> undoDownvote(@PathVariable Long questionId, Authentication authentication) {
         throw new NotImplementedException();
+    }
+
+    @GetMapping("/c/{community}")
+    public List<QuestionResponse> getQuestionsAskedAtCommunity(@PathVariable String community) {
+        return questionService.getQuestionsAskedAtCommunity(community);
     }
 }
