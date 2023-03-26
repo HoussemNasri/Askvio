@@ -14,7 +14,7 @@ function App() {
                 <Routes>
                     <Route element={<Layout/>}>
                         <Route path='/' element={<HomePage/>}/>
-                        <Route path='questions/:questionId/*' element={<QuestionPage/>}></Route>
+                        <Route path='/c/:communityName/questions/:questionId/*' element={<QuestionPage/>}></Route>
                         <Route path='*' element={<NotFoundPage/>}/>
                     </Route>
                     <Route path='/c/:communityName' element={<CommunityPage/>}></Route>

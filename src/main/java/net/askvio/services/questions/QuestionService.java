@@ -62,7 +62,7 @@ public class QuestionService {
                 0, 0,
                 userAccountRepository.findUserResponseDTOByEmail(principalAccount.get().getEmail()).orElseThrow(),
                 communityRepository.findCommunityById(request.communityId()).orElseThrow(),
-                generateQuestionLink(submittedQuestion.getId(), submittedQuestion.getTitle()),
+                generateQuestionLink(community.get().getName(), submittedQuestion.getId(), submittedQuestion.getTitle()),
                 false,
                 false
         ));
@@ -93,15 +93,15 @@ public class QuestionService {
                 lookupCommunity(question),
                 // TODO: Optimization - Store question link in the database so we don't generate the url
                 //    everytime the question is accessed
-                generateQuestionLink(question.getId(), question.getTitle()),
+                generateQuestionLink(question.getAskedAtCommunity().getName(), question.getId(), question.getTitle()),
                 voteService.isPostDownvotedByPrincipalUser(question),
                 voteService.isPostUpvotedByPrincipalUser(question));
     }
 
-    public String generateQuestionLink(Long questionId, String questionTitle) {
+    public String generateQuestionLink(String communityName, Long questionId, String questionTitle) {
         Objects.requireNonNull(questionId);
         Objects.requireNonNull(questionTitle);
 
-        return "%s/questions/%d/%s".formatted(reactAppUrl, questionId, questionTitleNormalizer.normalize(questionTitle));
+        return "%s/c/%s/questions/%d/%s".formatted(reactAppUrl, communityName, questionId, questionTitleNormalizer.normalize(questionTitle));
     }
 }
