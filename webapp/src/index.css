@@ -2,6 +2,7 @@
 @layer base {
   html {
     @apply text-gray-800;
+    overflow-x: hidden;
   }
 }
 

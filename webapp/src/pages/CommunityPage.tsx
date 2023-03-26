@@ -44,10 +44,10 @@ export default function CommunityPage() {
     }
 
     return (
-        <div className="w-screen flex flex-col">
+        <div className="w-screen h-screen flex flex-col">
             <Navbar/>
             <div className="grow flex flex-col mt-[72px]">
-                <div className="flex-auto flex-col w-100 h-36 bg-purple-700"></div>
+                <div className="flex-auto flex-col w-screen h-36 bg-purple-700"/>
                 <div className="flex flex-row  items-end justify-center w-[100%] ml-8 -mt-14 gap-3">
                     <img className="w-36 h-36 rounded-full"
                          src={`https://api.dicebear.com/5.x/bottts/svg?seed=${communityData.name}`}
