@@ -102,7 +102,7 @@ public class QuestionService {
 
     public List<QuestionResponse> getQuestionsAskedAtCommunity(String community) {
         // TODO: Remove the limit on the number of returned questions. I don't know when though...
-        return questionRepository.getQuestionsAskedAtCommunity(community, Pageable.ofSize(30))
+        return questionRepository.getQuestionsAskedAtCommunity(community, Pageable.ofSize(10))
                        .stream().map(this::mapQuestionToQuestionResponse)
                        .toList();
     }
