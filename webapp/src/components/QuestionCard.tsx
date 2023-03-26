@@ -66,7 +66,7 @@ export interface QuestionCardProps {
 }
 
 function CommunityLabel(community: CommunityResponse) {
-    return <div className="flex flex-row gap-1">
+    return <div className="flex flex-row gap-1 items-center">
         <img className="w-8 h-8 rounded-full"
              src={`https://api.dicebear.com/5.x/bottts/svg?seed=${community.name}`}
              alt="Rounded avatar"/>

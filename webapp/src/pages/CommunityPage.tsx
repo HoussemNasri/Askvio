@@ -2,9 +2,9 @@ import {useGetCommunityQuery} from "../redux/CommunitySlice";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {Loader} from "../components/Loader";
-import {useGetFeedQuery} from "../redux/feedSlice";
 import {useGetQuestionsAskedAtCommunityQuery} from "../redux/questionSlice";
 import QuestionCard from "../components/QuestionCard";
+import AboutCommunity from "../components/banners/AboutCommunity";
 
 export default function CommunityPage() {
     const params = useParams()
@@ -16,13 +16,23 @@ export default function CommunityPage() {
         }
     }, [])
 
-    const {data:questions, error:communityQuestionsError, isLoading, refetch} = useGetQuestionsAskedAtCommunityQuery(name)
+    const {
+        data: questions,
+        error: communityQuestionsError,
+        isLoading,
+        refetch
+    } = useGetQuestionsAskedAtCommunityQuery(name)
 
     useEffect(() => {
         console.log(questions)
     }, [questions])
 
-    const {data: communityData, isLoading: isLoadingCommunityData, status, error:communityError} = useGetCommunityQuery(name)
+    const {
+        data: communityData,
+        isLoading: isLoadingCommunityData,
+        status,
+        error: communityError
+    } = useGetCommunityQuery(name)
 
     if (isLoadingCommunityData) {
         return <Loader resourceName="Community Data"/>
@@ -41,18 +51,19 @@ export default function CommunityPage() {
                      alt="Rounded avatar"/>
                 <div className="flex flex-col mb-3 gap-2">
                     <div className="flex flex-row justify-center gap-5 items-center">
-                        <p className="text-4xl font-bold text-stone-900">{communityData.displayName}</p>
+                        <p className="text-4xl font-bold text-stone-900 max-w-2xl">{communityData.displayName}</p>
                         <button type="button"
                                 className="focus:outline-none text-white bg-purple-700 hover:bg-purple-800 font-medium
                                 rounded-full text-sm px-5 py-2.5 dark:bg-purple-600
                                   dark:hover:bg-purple-700">Join</button>
                     </div>
-                    <p className="text-sm font-medium text-neutral-500">{`v/${communityData.name}`}</p>
+                    <p className="text-sm font-medium text-neutral-500">{`c/${communityData.name}`}</p>
                 </div>
             </div>
-            <div className="w-full flex mt-8 justify-center items-center">
+            <div className="flex flex-row justify-center mt-8 gap-8">
+                <div className="flex justify-center items-center w-[48rem]">
                     {
-                        questions && <div className="flex flex-col w-[60%]  gap-5">
+                        questions && <div className="flex flex-col w-full gap-5">
                             {
                                 questions.map(question => {
                                     return <QuestionCard question={question} shouldHideCommunityLabel={true}/>
@@ -60,6 +71,8 @@ export default function CommunityPage() {
                             }
                         </div>
                     }
+                </div>
+                <AboutCommunity community={communityData}/>
             </div>
 
 
