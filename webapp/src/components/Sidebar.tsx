@@ -12,7 +12,7 @@ export default function Sidebar() {
     const location = useLocation()
 
     const Menus = [
-        {title: 'HomePage', path: '/', src: <AiFillHome/>},
+        {title: 'Home', path: '/', src: <AiFillHome/>},
         {title: 'Ask Question', path: '/ask', src: <FaHandPaper/>},
         {title: 'Profile', path: '/profile', src: <RiProfileFill/>},
         {title: 'Communities', path: '/communities', src: <HiUserGroup/>},
