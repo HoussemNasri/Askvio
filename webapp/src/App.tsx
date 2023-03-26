@@ -17,7 +17,7 @@ function App() {
                         <Route path='questions/:questionId/*' element={<QuestionPage/>}></Route>
                         <Route path='*' element={<NotFoundPage/>}/>
                     </Route>
-                    <Route path='/communities/:communityName' element={<CommunityPage/>}></Route>
+                    <Route path='/c/:communityName' element={<CommunityPage/>}></Route>
                 </Routes>
             </Router>
         </div>
