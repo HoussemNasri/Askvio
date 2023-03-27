@@ -1,5 +1,4 @@
-import {Box, Container, CssBaseline, Stack, Tab, Tabs} from "@mui/material";
-import Typography from "@mui/material/Typography";
+
 import {useEffect, useState} from "react";
 import TabPanel from "../components/TabPanel";
 import {loadAllCommunities, CommunityResponse} from '../redux/communitiesAPI'

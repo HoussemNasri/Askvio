@@ -1,4 +1,4 @@
-import {Box, Divider, Typography, Link, Button, Stack} from "@mui/material";
+/*import {Box, Divider, Typography, Link, Button, Stack} from "@mui/material";*/
 import {useCallback, useEffect, useState} from "react";
 import {CommunityResponse, join, isCurrentUserMemberOfCommunity} from '../redux/communitiesAPI'
 import {useAppSelector} from "../redux/app/hooks";
@@ -9,7 +9,7 @@ interface ExploreCommunitiesListItemProps {
 }
 
 export default function ExploreCommunitiesListItem({communityResponse}: ExploreCommunitiesListItemProps) {
-    const [isMember, setIsMember] = useState(false)
+    /*const [isMember, setIsMember] = useState(false)
     const {jwt, isAuthenticated} = useAppSelector(getAuthState)
 
     useEffect(() => {
@@ -54,5 +54,5 @@ export default function ExploreCommunitiesListItem({communityResponse}: ExploreC
             marginTop: 2,
             width: '100%'
         }}/>
-    </Box>
+    </Box>*/
 }

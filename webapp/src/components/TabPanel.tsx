@@ -1,4 +1,4 @@
-import {Box} from "@mui/material";
+/*import {Box} from "@mui/material";*/
 
 interface TabPanelProps {
     children?: React.ReactNode;
@@ -7,7 +7,7 @@ interface TabPanelProps {
     value: number;
 }
 export default function TabPanel(props: TabPanelProps) {
-    const { children, value, index, ...other } = props;
+   /* const { children, value, index, ...other } = props;
     return (
         <Box
             role="tabpanel"
@@ -22,5 +22,5 @@ export default function TabPanel(props: TabPanelProps) {
                 children
             )}
         </Box>
-    );
+    );*/
 }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
+/*import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
@@ -14,10 +14,10 @@ import {getAuthState} from "../redux/authSlice";
 type NavItem = {
     displayName: string;
     path: string;
-}
+}*/
 
 export default function Nav() {
-    const Search = styled('div')(({theme}) => ({
+   /* const Search = styled('div')(({theme}) => ({
         position: 'relative',
         borderRadius: theme.shape.borderRadius,
         backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -114,5 +114,5 @@ export default function Nav() {
                 </Box>
             </Toolbar>
         </AppBar>
-    </Box>)
+    </Box>)*/
 }

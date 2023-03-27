@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
+/*import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import {createTheme, ThemeProvider} from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';*/
 import * as yup from 'yup';
 import {string} from "yup";
 import {useFormik} from 'formik';
@@ -19,7 +19,7 @@ import {Navigate, useNavigate} from "react-router-dom";
 import {useAppDispatch, useAppSelector} from "../redux/app/hooks";
 import {getAuthState, loginAsync} from "../redux/authSlice";
 
-const theme = createTheme();
+/*const theme = createTheme();*/
 
 export default function LoginPage() {
     /*const navigate = useNavigate()
