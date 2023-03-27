@@ -1,5 +1,6 @@
 package net.askvio.controllers.communities;
 
+import java.time.Instant;
 import java.util.Collections;
 import java.util.Set;
 
@@ -18,7 +19,9 @@ public class SimpleCommunityResponse implements CommunityResponse {
     private final boolean isPrivate;
     private final boolean isRestricted;
 
-    public SimpleCommunityResponse(Long id, String name, String displayName, String about, String primaryTopic, Set<String> subtopics, boolean isPublic, boolean isPrivate, boolean isRestricted) {
+    private final Instant creationDate;
+
+    public SimpleCommunityResponse(Long id, String name, String displayName, String about, String primaryTopic, Set<String> subtopics, boolean isPublic, boolean isPrivate, boolean isRestricted, Instant creationDate) {
         this.id = id;
         this.name = name;
         this.displayName = displayName;
@@ -28,6 +31,7 @@ public class SimpleCommunityResponse implements CommunityResponse {
         this.isPublic = isPublic;
         this.isPrivate = isPrivate;
         this.isRestricted = isRestricted;
+        this.creationDate = creationDate;
     }
 
     @Override
@@ -73,5 +77,10 @@ public class SimpleCommunityResponse implements CommunityResponse {
     @Override
     public boolean isRestricted() {
         return isRestricted;
+    }
+
+    @Override
+    public Instant getCreationDate() {
+        return null;
     }
 }

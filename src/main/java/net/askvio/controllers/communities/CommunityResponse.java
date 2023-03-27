@@ -1,5 +1,6 @@
 package net.askvio.controllers.communities;
 
+import java.time.Instant;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -32,4 +33,6 @@ public interface CommunityResponse {
     @Value("#{target.isRestricted()}")
     @JsonProperty("isRestricted")
     boolean isRestricted();
+
+    Instant getCreationDate();
 }

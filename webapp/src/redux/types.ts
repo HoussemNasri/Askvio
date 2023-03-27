@@ -30,6 +30,8 @@ export interface CommunityResponse {
     isPublic:     boolean;
     isPrivate:    boolean;
     isRestricted: boolean;
+
+    creationDate: Date;
 }
 
 export interface UserResponse {

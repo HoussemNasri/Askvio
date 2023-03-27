@@ -1,5 +1,6 @@
 package net.askvio.model;
 
+import java.time.Instant;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -60,6 +61,7 @@ public class Community {
     @OneToMany(mappedBy = "askedAtCommunity")
     private Set<Question> postedQuestions;
 
+    private Instant creationDate;
 
     public String getDisplayName() {
         return displayName;
@@ -79,6 +81,10 @@ public class Community {
 
     public Set<String> getSubtopicsDisplayNames() {
         return getSubtopicSet().stream().map(Topic::getDisplayName).collect(Collectors.toSet());
+    }
+
+    public Instant getCreationDate() {
+        return creationDate;
     }
 
     @Override
