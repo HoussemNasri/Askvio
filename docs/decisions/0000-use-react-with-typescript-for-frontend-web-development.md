@@ -32,10 +32,6 @@ Chosen option: **ReactJS + Typescript**, because it combines the flexibility and
 * **Learning Curve:** Developers might need some time to adapt to the syntax and concepts of Typescript.
 * **Build Complexity:** Introducing Typescript may increase build complexity, but the benefits outweigh the drawbacks.
 
-## Validation
-
-The implementation of this decision will be validated through a combination of code reviews and automated tests. Code reviews will ensure that Typescript is used effectively, and automated tests, including unit tests and integration tests, will guarantee the correctness of the implementation.
-
 ## Pros and Cons of the Options
 
 ### ReactJS
