@@ -1,8 +1,5 @@
 package net.askvio.model;
 
-import java.time.Instant;
-import java.util.List;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
@@ -10,6 +7,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -26,7 +26,7 @@ public class Question extends Post {
     private List<Answer> answers;
 
     public Question(Long id, String title, String content, Instant creationDate, UserAccount owner, Community community) {
-        super(id, owner, creationDate, content);
+        super(id, owner, creationDate, content, Collections.emptySet());
         this.title = title;
         this.askedAtCommunity = community;
     }

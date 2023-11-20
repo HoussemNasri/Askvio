@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 
+import java.util.Set;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -18,7 +19,7 @@ public class Answer extends Post {
     private Question question;
 
     public Answer(Long id, String content, Instant creationDate, Boolean isAccepted, UserAccount owner, Question question) {
-        super(id, owner, creationDate, content);
+        super(id, owner, creationDate, content, Set.of());
         this.isAccepted = isAccepted;
         this.question = question;
     }
