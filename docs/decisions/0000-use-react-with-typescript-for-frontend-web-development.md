@@ -1,17 +1,14 @@
-
 # Use React for Frontend Web Development
 
 ## Context and Problem Statement
 
-{Describe the context and problem statement, e.g., in free form using two to three sentences or in the form of an illustrative story.
- You may want to articulate the problem in form of a question and add links to collaboration boards or issue management systems.}
+In the context of developing the front end for our web application, we need to choose a JavaScript library or framework that facilitates efficient and maintainable development. The problem at hand is to select the most suitable technology that aligns with our project requirements and development goals. The decision should be based on factors such as developer community support, ease of integration, and long-term maintainability.
 
-<!-- This is an optional element. Feel free to remove. -->
 ## Decision Drivers
 
-* {decision driver 1, e.g., a force, facing concern, …}
-* {decision driver 2, e.g., a force, facing concern, …}
-* … <!-- numbers of drivers can vary -->
+* **Community Support:** The availability of a robust and active developer community.
+* **Type Safety:** The ability to use static typing for enhanced code quality.
+* **Ecosystem Compatibility:** Integration capabilities with third-party libraries and tools.
 
 ## Considered Options
 
@@ -22,77 +19,52 @@
 
 ## Decision Outcome
 
-Chosen option: "ReactJS + Typescript", because
-{justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
+Chosen option: **ReactJS + Typescript**, because it combines the flexibility and popularity of React with the added benefits of static typing offered by Typescript. This choice ensures a scalable and maintainable codebase.
 
-<!-- This is an optional element. Feel free to remove. -->
 ### Positive Consequences
 
-* {e.g., improvement of one or more desired qualities, …}
-* …
+* **Community Backing:** React is widely adopted, and combining it with Typescript ensures a strong and supportive community.
+* **Type Safety:** Typescript adds static typing, reducing runtime errors and improving code quality.
+* **Ecosystem Integration:** React's extensive ecosystem and compatibility with Typescript provide a wide range of tools and libraries for development.
 
-<!-- This is an optional element. Feel free to remove. -->
 ### Negative Consequences
 
-* {e.g., compromising one or more desired qualities, …}
-* …
+* **Learning Curve:** Developers might need some time to adapt to the syntax and concepts of Typescript.
+* **Build Complexity:** Introducing Typescript may increase build complexity, but the benefits outweigh the drawbacks.
 
-<!-- This is an optional element. Feel free to remove. -->
 ## Validation
 
-{describe how the implementation of/compliance with the ADR is validated. E.g., by a review or an ArchUnit test}
+The implementation of this decision will be validated through a combination of code reviews and automated tests. Code reviews will ensure that Typescript is used effectively, and automated tests, including unit tests and integration tests, will guarantee the correctness of the implementation.
 
-<!-- This is an optional element. Feel free to remove. -->
 ## Pros and Cons of the Options
 
 ### ReactJS
 
-<!-- This is an optional element. Feel free to remove. -->
-{example | description | pointer to more information | …}
-
 * Good, because it is the most popular according to [Stackoverflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies).
-* Good, because {argument b}
-<!-- use "neutral" if the given argument weights neither for good nor bad -->
-* Neutral, because {argument c}
-* Bad, because {argument d}
-* … <!-- numbers of pros and cons can vary -->
+* Good, for its component-based architecture, enabling modular and reusable code.
+* Neutral, as it lacks built-in support for static typing.
+* Bad, because potential for runtime errors due to lack of type checking.
 
 ### React + Typescript
 
-<!-- This is an optional element. Feel free to remove. -->
-{example | description | pointer to more information | …}
-
 * Good, because it is the most popular according to [Stackoverflow 2022 Developer Survey](https://survey.stackoverflow.co/2022/#technology-most-popular-technologies).
-* Good, because {argument b}
-<!-- use "neutral" if the given argument weights neither for good nor bad -->
-* Neutral, because {argument c}
-* Bad, because {argument d}
-* … <!-- numbers of pros and cons can vary -->
+* Good, for combining the benefits of React with static typing for improved code quality.
+* Neutral, as there is a learning curve associated with Typescript.
+* Bad, because of potential build complexity.
 
 ### VueJS
 
-{example | description | pointer to more information | …}
-
-* Good, because {argument a}
-* Good, because {argument b}
-* Neutral, because {argument c}
-* Bad, because {argument d}
-* …
+* Good, for its simplicity and ease of integration.
+* Good, for its flexible and approachable design.
+* Neutral, as it may lack the same level of community and third-party support as React.
+* Bad, because it may not be as widely adopted in the industry.
 
 ### Angular
 
-{example | description | pointer to more information | …}
+* Good, because it uses Typescript by default instead of Javascript.
+* Bad, because it has a steeper learning curve compared to the other options.
+* Bad, for its heavier framework that may lead to increased development time.
+* Neutral, as it may be overkill for smaller projects.
 
-* Good, because it uses Typescript by default instead of Javascript
-* Bad, because it has a steeper learning curve compared to the other options
-
-<!-- This is an optional element. Feel free to remove. -->
 ## Links
 - [Mi Classrooms ADR-0002](https://github.com/mi-classroom/mi-web-technologien-beiboot-ss2022-Moosgloeckchen/blob/be96353229bb0514241963bb8b1d32fe4bd153f8/docs/decisions/0002-react-frontend.md)
-## More Information
-
-{You might want to provide additional evidence/confidence for the decision outcome here and/or
- document the team agreement on the decision and/or
- define when this decision when and how the decision should be realized and if/when it should be re-visited and/or
- how the decision is validated.
- Links to other decisions and resources might here appear as well.}
