@@ -6,5 +6,5 @@ Askvio is an online knowledge platform created to help people find the answers t
 ## Features
 - **Newsfeed**  – A comprehensive layout displaying an overview of all user activities & posts.
 - **User Profile** – Allow users to create profiles. Select an avatar, cover image and social media links.
-- **User Groups** – Allow users to create groups. Public or private with images, and include topics.
+- **User Groups** – Allow users to create groups. Public or private with images, and include many topics.
 - **User / Follow** – Allow your community users to easily follow and explore other users' profiles.
