@@ -45,12 +45,16 @@ public class AnswersController {
     @PostMapping("/questions/{questionId}/answers")
     public ResponseEntity<AnswerResponse> postAnswer(@RequestBody PostAnswerRequest answerRequest, @PathVariable Long questionId,
                                                      Authentication authentication) {
-        return answersService.postAnswer(answerRequest, questionId, authentication).map(ResponseEntity::ok).orElse(ResponseEntity.badRequest().build());
+        return answersService.postAnswer(answerRequest, questionId, authentication)
+                             .map(ResponseEntity::ok)
+                             .orElse(ResponseEntity.badRequest().build());
     }
 
     @GetMapping("/answers/{answerId}")
     public ResponseEntity<AnswerResponse> getAnswer(@PathVariable Long answerId) {
-        return answersService.getAnswerById(answerId).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+        return answersService.getAnswerById(answerId)
+                             .map(ResponseEntity::ok)
+                             .orElse(ResponseEntity.notFound().build());
     }
 
     /**
